@@ -1,0 +1,27 @@
+{% extends "postman\base.html" %}
+{% load i18n postman_tags staticfiles%}
+<!doctype html>
+<html>
+<head>
+    {% block extra_head %}{% endblock %}
+  </head>
+<body>
+{% block postman_menu %}
+<nav class="navbar navbar-default">
+<div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Messages</a>
+    </div>
+<ul class="nav navbar-nav" id="postman_menu">{% postman_unread as unread_count %}
+ <li><a href="{% url 'postman:inbox' %}">&raquo;&nbsp;{% trans "Inbox" %}{% if unread_count %} <strong>({{ unread_count }})</strong>{% endif %}</a></li>
+ <li><a href="{% url 'postman:sent' %}">&raquo;&nbsp;{% trans "Sent Messages" %}</a></li>
+ <li><a href="{% url 'postman:write' %}">&raquo;&nbsp;{% trans "Write" %}</a></li>
+ <li><a href="{% url 'postman:archives' %}">&raquo;&nbsp;{% trans "Archives" %}</a></li>
+ <li><a href="{% url 'postman:trash' %}">&raquo;&nbsp;{% trans "Trash" %}</a></li>
+</ul>
+</div>
+</nav>
+{% endblock %}
+{% block content %}{% endblock %}
+</body>
+</html>

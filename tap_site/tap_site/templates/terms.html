@@ -1,0 +1,314 @@
+{% load cms_tags menu_tags sekizai_tags i18n postman_tags staticfiles%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}Wenyenchi{% endblock %}</title>
+    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Roboto" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- CSS Styling -->
+    <style>
+
+ .navbar-default {
+    background-color: #2ECC71;
+}
+.navbar-default .navbar-nav>li>a:focus, 
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, 
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover  {
+  background: white;
+}
+
+html,body {
+  height: 100%;
+  background-color: lightgrey;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+}
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+
+.site-wrapper {
+    display: table;
+    width: 100%;
+    height: 100%;
+    /* For at least Firefox */
+    min-height: 100%;
+    -webkit-box-shadow: inset 0 0 2px black;
+}
+
+.site-wrapper-inner {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.cover-container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+/* Padding for spacing */
+
+.inner {
+    padding: 30px;
+}
+
+
+</style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
+        </div>
+
+        <!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/reviews"><span class="glyphicon glyphicon-thumbs-down"></span>{% trans "Reviewer" %}</a></li>
+                        <li><a href="/survey"><span class="glyphicon glyphicon-eye-open"></span>{% trans "Surveys" %}</a></li>
+                        <li><a href="/polls"><span class="glyphicon glyphicon-comment"></span>{% trans "Polls" %}</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="/messages"><span class="glyphicon glyphicon-envelope"></span>{% trans "Messages" %}</a></li>
+                        <li><a href="/helpdesk"><span class="glyphicon glyphicon-headphones"></span>{% trans "Helpdesk" %}</a></li>
+                        <li><a href="/accounts/logout"><span class="glyphicon glyphicon-log-out"></span>{% trans "Logout" %}</a></li>
+                        {% else %}
+                        <li><a href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span>{% trans "Login" %}</a></li>
+                        </ul>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+
+    </div>
+</nav>
+{% block body %}
+<div class="container-fluid">
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                <div class="cover-container">
+                    <div class="inner cover">
+                        <div class="container">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                        <h1 class="cover-heading">TERMS AND CONDITIONS</h1>
+                    </div></div></div>
+                        <p class="lead">BY USING ANY OF THE INTERACTIVE SERVICES AND/OR THE SITE YOU AGREE THAT YOU HAVE READ AND ACCEPT THESE TERMS AND CONDITIONS AND THAT THEY SHALL APPLY TO YOUR USE. IF YOU DO NOT WISH TO BE BOUND BY THEM, PLEASE LEAVE THIS WEB SITE.</p> <p class="lead">This agreement is made between you and Wenyenchi Group which is a registered company in Kenya and when we refer to "we" in this policy we mean the activities of the Wenyenchi Group.</p>
+                        <p><strong>1. Interactive Services</strong></p>
+
+<p>1.1 Wenyenchi Group may make available to you chat areas, forums and/or other means by which communications, including User Generated Content, may be made available and/or disseminated publicly on the Site; shopping and other commercial and/or transactional services; advisory services; and/or competitions and/or prize draws (all together the "Interactive Services").</p>
+
+<p>1.2 The Interactive Services may be operated by third parties and where they are this will be made clear to you. Where such Interactive Services are operated by a third party you may be asked to supply information and/or data (including, without limitation, financial, credit card and/or bank data), where that third party may have specific additional terms and conditions which apply. Further, when using such Interactive Services operated by such third parties, you will be dealing with them directly and as such any contracts and/or arrangements will be formed between you and them, without Wenyenchi Group as a party and Wenyenchi Group cannot be held liable for your use of or any liability arising out of the same (save to the extent required by law).</p>
+ 
+ <p><strong>2. Use of the Site and the Interactive Services</strong></p>
+ <p>2.1 The Site and the Interactive Services are for personal and non-commercial use only. You may download and print portions of the Site and/or the Interactive Services for your personal, non-commercial use only. In particular, you may not use any information from any directory or other listing or information retrieval service (if any) made available on or by the Site and/or the Interactive Services, in connection with any business or commercial undertaking (whether or not for profit). Any other use of materials on the Site and/or the Interactive Services, including User Generated Content (including without limitation reproduction for a purpose other than that noted above and any modification, distribution or republication) without the prior written permission of Wenyenchi Group is strictly prohibited. You also agree not to frame to the Site for any purpose, unless specifically authorised by Wenyenchi Group to do so.</p>
+
+<p>2.2 You agree that you shall not use the Site or the Interactive Services to transmit or knowingly or recklessly receive (or knowingly or recklessly authorise or permit any other person to receive or transmit) material which is obscene, threatening, menacing, offensive, defamatory, invasive of another’s privacy, abusive, in breach of confidence, in breach of any intellectual property right (including copyright) or otherwise violates any applicable law or regulation or code, or which makes excessive demands for bandwidth or contains any virus or which may otherwise impair or harm Wenyenchi Group's computer systems or any third party computer system; and</p>
+
+<p>2.3 (a) You agree that you will not submit any material to the Site, including, without limitation, comments, reviews, ratings and material included on your Profile page (“User Generated Content”):</p>
+
+<p>(i) that is in any way, threatening, abusive, offensive, defamatory, invasive of another’s privacy, abusive, in breach of confidence, embarrassing to any person or likely to deceive any person, hateful, blasphemous, pornographic, or racially, ethnically or otherwise objectionable;</p>
+
+<p>(ii) in respect of which you do not have the necessary licences or approvals;</p>
+
+<p>(iii) which constitutes or encourages conduct that would be considered a criminal offence or otherwise contrary to any law, regulation or code of practice, give rise to civil liability or infringe the rights of any third party anywhere in the world;</p>
+
+<p>(iv) which is or could be technically harmful;</p>
+
+<p>(v) which is or may be deemed to be advertising or promotional materials including “spam” email;</p>
+
+<p>(vi) which makes excessive demands for bandwidth;</p>
+
+<p>(vii) which is inaccurate or misleading.</p>
+
+<p>(b) You will not impersonate any person or entity when submitting User Generated Content or misrepresent any affiliation with any person or entity.</p>
+
+<p>(c) You acknowledge that Wenyenchi Group has no obligation to monitor any User Generated Content but Wenyenchi Group has the sole discretion to modify or delete any such User Generated Content in its sole discretion and may remove any such material at any time. Notwithstanding this, you are solely responsible for and bear the legal risk associated with such User Generated Content anywhere in the world.</p>
+
+<p>(d) In the event that you are in breach of these Terms and Conditions and/or Wenyenchi Group’s Standards for User Generated Content at any time, Wenyenchi Group may forthwith terminate any account that you have with it and you may not open another account with Wenyenchi Group and Wenyenchi Group reserves the right to terminate any such account. In the event that you continue to contravene these Terms and Conditions and/or the Standards for User Generated Content Wenyenchi Group reserves the right to contact your employer, school or college or your internet service provider.</p>
+
+<p>(e) Wenyenchi Group will co-operate with law enforcement or regulatory authorities or any court order requesting or requiring it to disclose the identity or location of or any other information in relation to anyone who has submitted User Generated Content to Wenyenchi Group in breach or allegedly in breach of these Terms and Conditions and/or the Standards for User Generated Content. We may also disclose such information where we are advised by our lawyers that a court order would be granted requiring us to disclose it, even if no legal proceedings have been commenced in relation to the same.</p>
+
+<p>(f) The Site enables users of the Site to view the Profile pages of registered users and enables registered users with Profile pages to share personal data with other registered users who have Profile pages. You agree that you will only use other users’ personal data published on the Site in accordance with the applicable laws and regulations (including, without limitation, data protection laws) and, without limitation to the other provisions of these Terms and Conditions, that you will only use other users’ personal data for lawful purposes and as expressly permitted by such other user(s).</p>
+
+<p>(g) You will not access or attempt to access the accounts of other users or penetrate or attempt to penetrate Wenyenchi Group’s security measures.</p>
+
+<p>(h) You acknowledge that submitting any UGC to the Site does not guarantee that the UGC, or any part of it will appear on the Site. You cannot edit or remove UGC once you have submitted it to the Site. However, if you become aware of any inaccuracy in UGC submitted by you, please contact Wenyenchi Group at info@wenyenchi.com</p>
+
+<p>2.4 If you publish any User Generated Content via the Interactive Services by way of contributions to chats, discussions or user reviews or comments or via your Profile page, you automatically and hereby grant to Wenyenchi Group a perpetual, royalty free, irrevocable, non-exclusive right and license to use, reproduce, modify, publish, translate, create derivative works from and distribute such User Generated Content into any form, medium or technology now known or hereafter developed. In addition, as between you and Wenyenchi Group, you assert and waive any and all moral rights in such User Generated Content</p>
+
+<p>2.5 The intellectual property in all design, text, graphics and other material (other than User Generated Content) and the selection or arrangement of such material in the Site and/or the Interactive Services is owned by Wenyenchi Group and/or its respective licensors.</p>
+
+<p>2.6 Save to the extent required by law, no representations, warranties or terms of any kind are made in respect of the Site and/or the Interactive Services or their contents (including, without limitation, any views or comment made). All information and/or data included in and/or on the Sites, the Interactive Services, including any UGC, and/or in any directory or other listings or information retrieval service made available on or by the Site and/or the Interactive Services and/or the UGC has been so made available for guidance only. Wenyenchi Group has no responsibility or control over the contents of UGC which may not be accurate and Wenyenchi Group cannot be held liable for any contents of UGC or any consequences of you relying on it. Please be aware that any information and/or data in UGC provided by another user may be incorrect or misleading and it is your responsibility to take precautions and use common sense when using any information and/or data contained in any UGC.Your use of all and any information and/or data included in and/or on the Sites, the Interactive Services, including any UGC, and/or in any directory or other listings or information retrieval service made available on or by the Site and/or the Interactive Services and/or the UGC is therefore entirely at your own risk. All liability of Wenyenchi Group, its directors, employees or other representatives howsoever arising for any loss suffered as a result of your use of the Site and/or the Interactive Services is expressly excluded to the fullest extent permitted by law.</p>
+
+<p>2.7 The Site and/or the Interactive Services may include links to web sites and/or services owned and/or operated by third parties. These are provided for your convenience only and Wenyenchi Group is not responsible for and does not give any warranties or make any representations regarding any such web sites and/or services and is not responsible for or liable in relation to the content or your use of such web sites (save to the extent required by law).</p>
+
+<p>2.8 The onus for ensuring that material presented on the Internet is legal rests with the original content provider, and Wenyenchi Group will not be under any obligations to limit access to material unless notified that it is illegal or otherwise in breach of these Terms and Conditions. Notwithstanding, Wenyenchi Group shall have the right to remove any items it believes may be illegal or otherwise in breach of these Terms and Conditions.</p>
+
+<p>2.9 Wenyenchi Group is the owner of:</p>
+
+<p>(a) those trade mark(s) indicated as such throughout the Site from time to time; and</p>
+
+<p>(b) all other trade marks used in the Site and/or the Interactive Service which are not licensed to it by any third party.</p>
+
+<p>All other trade marks, product names and company names or logos cited therein are the property of their respective owners.</p>
+
+<p>2.10 The provisions in clause 5 on Data Protection and Use of Personal Information apply in respect of your use of the Site and/or the Interactive Services.</p>
+
+<p>3. Availability and Security of the Site and the Interactive Service</p>
+
+<p>3.1 Due to the nature of the Internet, Wenyenchi Group does not promise full and error free operation of the Site and/or the Interactive Services at all times. All liability of Wenyenchi Group, its directors or employees howsoever arising for any loss whatsoever arising from your use of or inability to use the Site and/or the Interactive Services is excluded, insofar as it is possible to do so in law.</p>
+
+<p>3.2 Wenyenchi Group shall use reasonable endeavours to ensure that the Site, the Interactive Services and any information it holds on you are kept secure. However, due to the nature of the Internet, Wenyenchi Group cannot accept any liability for those who intentionally attempt to and/or gain unauthorised access to the same by means such as, without limitation, computer hacking (save to the extent that Wenyenchi Group is unable to exclude such liability by law).</p>
+
+<p>4. Registration</p>
+
+<p>4.1 Where you are asked to complete a Wenyenchi Group registration form the personal details that you provide must be true, accurate and complete.</p>
+
+<p>4.2 You will keep your password(s) relevant to the Site and/or the Interactive Services and/or UGC confidential and not reveal them to anyone else. You are responsible for all activities that are carried out under your username and password(s). We do not have the means to check the identities of people using the Site and will not be liable where your username and/or password(s) are used by someone else. You agree to notify Wenyenchi Group immediately by email to info@wenyenchi.com of any unauthorised use of your account of which You become aware.</p>
+
+<p>4.3 You will not create additional accounts for the purpose of abusing the functionality of the Site or other users or for any other reason in breach of these Terms and Conditions.</p>
+
+<p>4.4 You can cancel your registration at any time by contacting info@wenyenchi.com</p>
+
+<p>5.Data Protection and Use of Personal Information</p>
+
+<p>Please see Wenyenchi Group's Privacy Policy and Cookie Policy for details of how personally identifiable information is collected and may be used or shared with third parties. The Privacy Policy and Cookie Policy are incorporated into and form part of this Agreement.</p>
+
+<p>6. Payment</p>
+
+<p>The Site and the Interactive Services are currently made available without charge to you by Wenyenchi Group. However, you are responsible for all telephone charges necessary to access and use the Site and the Interactive Services which are made available.</p>
+
+<p>7. Termination</p>
+
+<p>Wenyenchi Group may permanently terminate your access to the Interactive Services immediately for any reason.</p>
+
+<p>8. Claims</p>
+
+Where a claim is brought against Wenyenchi Group by a third party in relation to your use of the Site and/or the Interactive Services and/or any User Generated Content you agree to fully reimburse Wenyenchi Group and all companies within the Wenyenchi Group for all losses, costs, actions, claims, damages, expenses (including legal costs and expenses) or liabilities, whatsoever suffered or incurred by Wenyenchi Group or companies within the Wenyenchi Group in or as a consequence of your breach of this Agreement and/or your use of the Site and/or Interactive Services and/or any User Generated Content which is included on the Site and/or the Interactive Services.</p>
+
+<p>9. Force Majeure</p>
+
+Neither party shall be liable to the other, for any loss or damage which may be suffered by the other party due to any cause beyond the first party's reasonable control including without limitation any power failure.</p>
+
+<p>10. Notices</p>
+
+Any notices shall, unless otherwise expressly stated, be in writing and shall be given by sending the same by e-mail, first class post, or facsimile transmission to the other party's address as may be designated in writing from time to time. Any notice sent by first class post shall be deemed (in the absence of evidence of early receipt) to have been delivered two days after dispatch. Any notice given by e-mail or facsimile transmission shall be deemed to have been delivered on the next working day following transmission.</p>
+
+<p>11. Assignment</p>
+
+<p>11.1 This Agreement shall be personal to you and you may not assign, transfer, sublet, lease or delegate all or any of your rights and obligations, without Wenyenchi Group's prior written consent.</p>
+
+<p>11.2 Wenyenchi Group reserves the right to assign or transfer all or any of its rights and obligations under this Agreement to any companies in the same group or other third party. In the event of assignment or transfer, notification will either be given to you by e-mail or posted on the Site.</p>
+
+<p>12. No Waiver</p>
+
+Failure by either party to exercise or enforce any right conferred shall not be deemed to be a waiver of any such right nor operate so as to bar that exercise or enforcement thereof or of any other right on any later occasion.</p>
+
+<p>13. Variation of Terms</p>
+
+Wenyenchi Group reserves the right to vary this Agreement from time to time and such changes shall become effective as soon as they are posted. Your continued use of the Site constitutes your agreement to all such changes.</p>
+
+<p>14. Law and Jurisdiction</p>
+
+<p>Where the Site and/or the Interactive Services are accessed from Kenya, or from outside Kenya this Agreement shall be governed by the laws of Kenya and you hereby submit to the exclusive jurisdiction of the Kenyan courts.</p>
+<div class="container">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h1 class="cover-heading">COMPETITION TERMS AND CONDITIONS </h1>
+</div>
+</div> 
+</div>       
+
+<p class="lead">Entry into any Competition confirms acceptance by you of these Terms and Conditions and you agree to be bound by them.</p>
+
+<p class="lead">By entering a Competition you will receive entry into prize draws for a chance to win the advertised prize.</p>
+
+<p class="lead">These Competition Terms and Conditions apply to all Competition’s run by Wenyenchi Group</p>
+
+<p>1 Competition</p>
+
+<p>1.1 The Competition is open to all Kenyan residents who have entered the  Competition.</p>
+
+<p>1.2 Each Competition runs for a specified number of days.</p>
+
+<p>1.3 One completed form equals to one entry. Multiple entries by the same person will not be counted; we will only count your first form.</p>
+
+<p>1.4 No purchase or payment is required.</p>
+
+<p>1.5 There will be one (1) winner, unless more are specified in the post, who will be drawn at random.</p>
+
+<p>1.6 The winner will be contacted by email by the prize provider. They will let you know how to claim your prize. If you do not contact them within the required time. If no contact is made within ten (10) calendar days of notification, the prize(s) will be forfeited and may be awarded to (an) alternate winner(s) selected in a random draw from the remaining eligible entries.</p>
+
+<p>1.7 Wenyenchi Group reserves the right to extend the entry period.</p>
+
+<p>1.8 Wenyenchi Group will give you contact details for the prize provider but takes no responsibility for the availability of any prize.</p>
+
+<p>2 Facebook Competition</p>
+
+<p>2.1 The competition is in no way sponsored, endorsed or administered by, or associated with, Facebook.</p>
+
+<p>2.2 By entering this contest, you agree to a complete release of Facebook from any or all liability in connection with this contest.</p>
+
+<p>3 General prize draw terms</p>
+
+<p>3.1 Entry is open to Kenyan residents only aged 16/over, unless specified. Employees of Wenyenchi Group and members of its group, their families, agents and anyone professionally connected with this Competition are excluded from entering.</p>
+
+<p>3.2 Entries made using methods generated by a script, macro or the use of automated devices or bulk entries will be void. No responsibility is accepted for entries which are invalid, incomplete, corrupt, illegible, lost or delayed in transit, or which fail to be properly submitted. All of which will be deemed void.</p>
+
+<p>3.3 Wenyenchi Group reserves the right to change the rules applicable to any prize draw or to void any prize draw at any time and for any reason.</p>
+
+<p>3.4 In the event of an error of any nature howsoever caused and whether obvious or otherwise which affects a prize draw in any way, Wenyenchi Group reserves the right to administer the prize draw as though the error had not occurred. Where Wenyenchi Group deems it appropriate and/or feasible, it will notify entrants of the error and correct it by email.</p>
+
+<p>3.5 The winner(s) agree(s) to the use of their name, photograph and disclosure of their city (e.g. Nairobi) on the Facebook page where the winning post was made or on the website or newspaper title associated with that Facebook page and on associated social media and will co-operate with any other reasonable requests by Wenyenchi Group relating to any publicity.</p>
+
+<p>3.6 Failure to meet the eligibility requirements of these Terms and Condition may result in forfeiture of the prize. In which event the prize will be offered to the next eligible entrant.</p>
+
+<p>3.7 Failure to comply with any of these rules may result in the disqualification of the entry. Wenyenchi Group reserves the right to disqualify any entry at their absolute discretion.</p>
+
+<p>3.8 No correspondence will be entered into on any matters arising from any competition.</p>
+
+<p>3.9 Prizes are subject to the prize provider’s terms and conditions. In the event of a prize being unavailable for any reason, the prize provider reserves the right to offer an alternative prize of equal or greater value.</p>
+
+<p>3.10 Prizes not transferable and there is no cash alternative.</p>
+
+<p>3.11 All uses of your personal data will be in accordance with these Prize</p>
+
+<p>Draw Terms and Conditions and otherwise is accordance with the Website</p>
+
+<p><strong>Privacy Policy.</strong></p>
+
+<p>3.12 The names of the winners will be available from Wenyenchi Group or on the social media pages and/or sites where the winning post was made.</p>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="mastfoot">
+                        <div class="inner">
+                            <p>&copy; 2018 | Wenyenchi -The Public Accountability Project (P.A.P) | <a href="/terms/">  All Rights Reserved</a> | <a href="/contact">  Advertising</a> |<a href="/terms/">  Terms & Conditions</a> |<a href="/privacy/">  Privacy Policy</a>|<a href="/contact"> Contact Us </a>|<a href="/contact"> Partner With Us </a></p>
+                        </div>
+                    </div>
+      </div>
+{% endblock %}
+</body>
+</html>

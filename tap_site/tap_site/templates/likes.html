@@ -1,0 +1,14 @@
+
+
+<div class="container text center">
+        <a href="#" onClick="document.getElementById('likebutton').submit()">Like</a> {{review.likes}}   |   <a href="#" onClick="document.getElementById('dislikebutton').submit()">Dislike</a> {{review.dislikes}}
+				<form id="likebutton" method="POST" action="review/{{review.id}}/preference/1/">
+				{% csrf_token %}
+				<input type="hidden">
+				</form>
+
+				<form id="dislikebutton" method="POST" action="review/{{review.id}}/preference/2/">
+				{% csrf_token %}
+				<input type="hidden">
+				</form>
+        </div>

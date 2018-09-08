@@ -1,0 +1,157 @@
+{% load cms_tags menu_tags sekizai_tags i18n postman_tags static analytical%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% analytical_head_top %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Wenyenchi</title>
+    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="{%  static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{%  static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{%  static 'favicon-16x16.png' %}">
+    <link rel="manifest" href=" {%  static 'site.webmanifest' %}">
+    <link rel="mask-icon" href=" {% static 'safari-pinned-tab.svg ' %}" color="#5bbad5" >
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Roboto" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- CSS Styling -->
+    <style>
+
+ .navbar-default {
+    background-color: #2ECC71;
+}
+.navbar-default .navbar-nav>li>a:focus, 
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, 
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover  {
+  background: lightgrey;
+}
+.dropdown-menu {
+    background-color: transparent;
+}
+html,body {
+  height: 100%;
+  background-color: #C0C0C0FF;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+p{
+  font-family: Roboto;font-size: medium;"  
+}
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+
+.site-wrapper {
+    display: table;
+    width: 100%;
+    height: 100%;
+    /* For at least Firefox */
+    min-height: 100%;
+    -webkit-box-shadow: inset 0 0 2px black;
+}
+
+.site-wrapper-inner {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.cover-container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+/* Padding for spacing */
+
+.inner {
+    padding: 30px;
+}
+
+
+</style>
+{% analytical_head_bottom %}
+</head>
+<body>
+    {% analytical_body_top %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
+        </div>
+
+        <!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/reviews"><span class="glyphicon glyphicon-thumbs-down"></span>{% trans "Reviewer" %}</a></li>
+                        <li><a href="/survey"><span class="glyphicon glyphicon-eye-open"></span>{% trans "Surveys" %}</a></li>
+                        <li><a href="/polls"><span class="glyphicon glyphicon-comment"></span>{% trans "Polls" %}</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="/messages"><span class="glyphicon glyphicon-envelope"></span>{% trans "Messages" %}</a></li>
+                        <li><a href="/helpdesk"><span class="glyphicon glyphicon-headphones"></span>{% trans "Helpdesk" %}</a></li>
+                        <li><a href="{% url 'accounts:logout' %}"><span class="glyphicon glyphicon-log-out"></span>{% trans "Logout" %}</a></li>
+                        {% else %}
+                        <li><a href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span>{% trans "Login" %}</a></li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+
+    </div>
+</nav>
+{% block body %}
+<div class="container">
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                <div class="cover-container">
+                    <div class="inner cover">
+                        <h1 class="cover-heading">Welcome to Wenyenchi </h1>
+                        <h1 class="cover-heading">The Public Accountability Project (P.A.P)</h1>
+                        <p class="lead">This is a Citizen Engagement Platform whose sole intention is to mobilize a community of problem solvers.</p> 
+                        <p class="lead">Everyone has a voice! Tell your story!</p>
+                        <p class="lead">Everyone has a right to be heard! Tell your story!</p>
+                        <h1 class="cover-heading">"SEMA USIKIKE"</h1>
+                        <hr>
+                        <img src="{% static "Wenyenchi Logo.png" %}" class=" center-block img-responsive" alt="Logo"/>
+                        <hr>
+                        <p>The project consists of:-</p>
+                        <p><strong>Reviewer</strong> where community members get to rate <strong>public offices</strong>, <strong>instituitions</strong> and <strong>companies</strong> based on <strong>service delivery</strong>, <strong>diversity management</strong>, <strong>fiscal management</strong>, <strong>land, water & waste management</strong>, <strong>responsiveness to community grievances</strong>, <strong>healthcare</strong>, <strong>education</strong> e.t.c.</p>
+                        <p>The reviewer writes a review and then rates their choice on a scale of <strong>1 (worst)</strong> to <strong>5 (best)</strong>.</p>
+                    <p>The community members will then use the information to generate reports and recommendations for each rated entity. The information will show the development progress of the country from the citizens' point of view.</p>
+                        <p><strong> Survey</strong> is geared at collecting huge amounts of data for a specific subject or area (ideal for companies, researchers and policy makers).</p>
+                        <p><strong>Polls</strong> is a place where community members can create and run their own specific polls. This is ideal for policy makers, pollsters and media professionals.</p>
+                        <p>Wenyenchi has a recommendation system built on machine learning which connects you with other people who have reviewed a similar entity. In short it connects those who have shared problems and those who have similar experiences.</p>
+                        <div class="inner">
+                            <a href="/accounts/register" class="btn btn-lg btn-success">Register & Tell Your Story</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="mastfoot">
+                        <div class="inner">
+                            <p>&copy; 2018 | Wenyenchi -The Public Accountability Project (P.A.P) | <a href="/terms/">  All Rights Reserved</a> | <a href="/contact">  Advertising</a> |<a href="/terms/">  Terms & Conditions</a> |<a href="/privacy/">  Privacy Policy</a>|<a href="/contact"> Contact Us </a></p>
+                        </div>
+                    </div>
+      </div>
+{% endblock %}
+{% analytical_body_bottom %}
+</body>
+</html>
