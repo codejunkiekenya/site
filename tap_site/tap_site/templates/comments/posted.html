@@ -1,0 +1,16 @@
+{% extends "comments/base.html" %}
+{% load i18n %}
+
+{% block title %}
+<div class="container text-center" style="margin-top: 40px;">
+	{% trans "Comment Posted" %}
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class="container text-center" style="margin-bottom: 40px;margin-top: 40px;">
+	<p>{% trans "Thank you for your comment" %}.</p>
+  <li><a href="{% url 'reviews:review_list' %}">{% trans "Back to reviews" %}</a></li>
+</div>
+{% endblock %}
