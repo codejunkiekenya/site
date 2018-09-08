@@ -1,0 +1,14 @@
+{% extends "postman/base_folder.html" %}
+{% load i18n %}
+{% block pm_folder_title %}
+<div class="container form-signin">
+<div class="panel panel-default">
+<div class="panel-heading">{% trans "Archived Messages" %}</div></div></div>{% endblock %}
+{% block pm_archive_button %}{% endblock %}
+{% block pm_undelete_button %}{% endblock %}
+{% block pm_footer_info %}
+<div class="container">
+<p>{% trans "Messages in this folder will never be removed. You can use this folder for long term storage." %}</p>
+</div>
+{% include "footer.html" %}
+{% endblock %}
