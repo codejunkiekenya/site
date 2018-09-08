@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CSV_DIR = os.path.join(BASE_DIR, "csv")
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'e^l@vth%)g49j=_!7w%k3uomieqpemokyta18yj2$ay81dk^u&'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
