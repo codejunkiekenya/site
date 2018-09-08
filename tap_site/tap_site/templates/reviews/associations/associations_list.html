@@ -1,0 +1,31 @@
+{% extends 'reviews\base.html' %}
+
+{% block title %}
+<div class="container">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h2>Professional Associations</h2>
+{% endblock %}
+</div>
+{% block content %}
+{% if associations_list %}
+<div class="container">
+<div class="row">
+    {% for associations in associations_list reversed %}
+    <div class="col-xs-12 col-lg-4">
+        <h4><a href="{% url 'associations:associations_detail' associations.id %}">
+        {{ associations.name }}
+        </a></h4>
+        <h5>{{ associations.review_set.count }} reviews</h5>
+        <h5>{{ associations.average_rating | floatformat }} average rating</h5>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="container text-center">
+    <p>No associations are available.</p></div>
+{% endif %}
+</div>
+</div>
+</div>
+{% endblock %}
