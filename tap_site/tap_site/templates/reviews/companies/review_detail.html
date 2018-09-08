@@ -1,0 +1,39 @@
+{% extends 'reviews\base.html' %}
+{% load social_share%}
+{% block title %}
+<div class="container text-center">
+<div class="panel panel-primary">
+<h2><a href="{% url 'companies:companies_detail' review.companies.id %}">{{ review.companies.name }}</a></h2>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+        {% if review.image %}
+        <img class="center-block img-responsive img-thumbnail" style="margin-bottom: 20px; width: 70%;
+  height: auto;" src="{{ review.image.url }}">
+        {% else %}
+        <p></p>
+        {% endif %}    
+       </div>
+<div class="container text-center">
+<div class="panel panel-info">
+<div class="panel-heading">
+<h4>Rated {{ review.rating }} of 5 by <a href="{% url 'reviews:user_review_list' review.user_name %}" >{{ review.user_name }}</a></h4>
+</div>
+<p>{{ review.pub_date }}</p>
+<p class="text-center" style="font-family: Roboto;font-size: medium;">{{ review.comment }}</p>
+</div>
+</div>
+<div class="container text-center" style="margin-top: 20px; margin-bottom: 30px;">
+{% post_to_facebook object_or_url "Share on Facebook" %}
+{% post_to_twitter "Wenyenchi.com: {{object.title}}. Check this out!" object_or_url "Twitter" %}
+{% post_to_gplus object_or_url "Google+" %}
+{% post_to_linkedin object.title object_or_url "LinkedIn" %}
+{% send_email object.title "Wenyenchi.com: {{object.title}}. Check this out!" object_or_url "Email" %}
+</div>
+</div>
+</div>
+
+{% include 'reviews/comments.html' %}
+
+{% endblock %}
