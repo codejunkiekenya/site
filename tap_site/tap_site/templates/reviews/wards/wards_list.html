@@ -1,0 +1,31 @@
+{% extends 'reviews\base.html' %}
+
+{% block title %}
+<div class="container">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h2>Wards</h2>
+{% endblock %}
+</div>
+{% block content %}
+{% if wards_list %}
+<div class="container">
+<div class="row">
+    {% for wards in wards_list reversed %}
+    <div class="col-xs-12 col-lg-4">
+        <h4><a href="{% url 'wards:wards_detail' wards.id %}">
+        {{ wards.name }}
+        </a></h4>
+        <h5>{{ wards.review_set.count }} reviews</h5>
+        <h5>{{ wards.average_rating | floatformat }} average rating</h5>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="container text-center">
+    <p>No wards are available.</p></div>
+{% endif %}
+</div>
+</div>
+</div>
+{% endblock %}
