@@ -1,0 +1,21 @@
+{% extends 'survey/base.html' %}
+{% load i18n %}
+
+{% block body %}
+<div class="container">
+ <div class="panel panel-primary">
+   <div class="panel-heading">
+	<h1 style="font-family: Roboto;font-size: medium;">{% trans "Latest Surveys"%}</h1>
+   </div>
+   <div class="panel-body">
+	<ul>
+		{% for survey in surveys %}
+		<div class="panel-heading">
+		<li><a href="{{ survey.get_absolute_url }}"><strong>{% trans "Take the Survey: "%} {{survey.name}}</strong></a></li>
+		</div>
+		{% endfor %}
+	</ul>
+	</div>
+	</div>
+</div>
+{% endblock %}
