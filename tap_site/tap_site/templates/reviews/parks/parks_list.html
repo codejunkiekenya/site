@@ -1,0 +1,31 @@
+{% extends 'reviews\base.html' %}
+
+{% block title %}
+<div class="container">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h2>Parks</h2>
+{% endblock %}
+</div>
+{% block content %}
+{% if parks_list %}
+<div class="container">
+<div class="row">
+    {% for parks in parks_list reversed %}
+    <div class="col-xs-12 col-lg-4">
+        <h4><a href="{% url 'parks:parks_detail' parks.id %}">
+        {{ parks.name }}
+        </a></h4>
+        <h5>{{ parks.review_set.count }} reviews</h5>
+        <h5>{{ parks.average_rating | floatformat }} average rating</h5>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="container text-center">
+    <p>No parks available.</p></div>
+{% endif %}
+</div>
+</div>
+</div>
+{% endblock %}
