@@ -1,0 +1,30 @@
+{% extends 'reviews\base.html' %}
+
+{% block title %}
+<div class="container">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h2>Counties</h2>
+{% endblock %}
+</div>
+{% block content %}
+{% if counties_list %}
+<div class="container">
+<div class="row">
+    {% for counties in counties_list reversed %}
+    <div class="col-xs-12 col-lg-4">
+        <h4><a href="{% url 'counties:counties_detail' counties.id %}">
+        {{ counties.name }}
+        </a></h4>
+        <h5>{{ counties.review_set.count }} reviews</h5>
+        <h5>{{ counties.average_rating | floatformat }} average rating</h5>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <p>No counties are available.</p>
+{% endif %}
+</div>
+</div>
+</div>
+{% endblock %}
