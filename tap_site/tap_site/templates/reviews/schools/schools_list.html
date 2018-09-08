@@ -1,0 +1,31 @@
+{% extends 'reviews\base.html' %}
+
+{% block title %}
+<div class="container">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h2>Schools</h2>
+{% endblock %}
+</div>
+{% block content %}
+{% if schools_list %}
+<div class="container">
+<div class="row">
+    {% for schools in schools_list reversed %}
+    <div class="col-xs-12 col-lg-4">
+        <h4><a href="{% url 'schools:schools_detail' schools.id %}">
+        {{ schools.name }}
+        </a></h4>
+        <h5>{{ schools.review_set.count }} reviews</h5>
+        <h5>{{ schools.average_rating | floatformat }} average rating</h5>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="container text-center">
+    <p>No schools are available.</p></div>
+{% endif %}
+</div>
+</div>
+</div>
+{% endblock %}
