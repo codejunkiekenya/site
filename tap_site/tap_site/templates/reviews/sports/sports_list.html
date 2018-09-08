@@ -1,0 +1,31 @@
+{% extends 'reviews\base.html' %}
+
+{% block title %}
+<div class="container">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h2>Sports (Associations)</h2>
+{% endblock %}
+</div>
+{% block content %}
+{% if sports_list %}
+<div class="container">
+<div class="row">
+    {% for sports in sports_list reversed %}
+    <div class="col-xs-12 col-lg-4">
+        <h4><a href="{% url 'sports:sports_detail' sports.id %}">
+        {{ sports.name }}
+        </a></h4>
+        <h5>{{ sports.review_set.count }} reviews</h5>
+        <h5>{{ sports.average_rating | floatformat }} average rating</h5>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="container text-center">
+    <p>No sports are available.</p></div>
+{% endif %}
+</div>
+</div>
+</div>
+{% endblock %}
