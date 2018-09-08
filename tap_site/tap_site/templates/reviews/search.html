@@ -1,0 +1,32 @@
+{% extends 'reviews\base.html' %}
+
+{% block title %}
+<div class="container">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h2>Search Results</h2>
+</div>
+
+{% endblock %}
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-sm-12">
+<div class="panel panel-default">
+	{% if query %}
+	<div class="panel-body">
+    {% for result in review_list %}
+    <ul><a href="{{ result.review.get_absolute_url }}">{{ result.review.public_office }}</a></ul>
+    {% endfor %}
+</div>
+{% else %}
+<div class="container text-center">
+<p>No results found</p>
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+{% include 'surveyfooter.html' %}
+{% endblock %}

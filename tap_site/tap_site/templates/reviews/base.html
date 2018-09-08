@@ -1,0 +1,186 @@
+{% load bootstrap3 staticfiles comments cms_tags menu_tags %}
+<head>
+<meta charset="UTF-8">
+    <title>Wenyenchi</title>
+    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="{%  static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{%  static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{%  static 'favicon-16x16.png' %}">
+    <link rel="manifest" href=" {%  static 'site.webmanifest' %}">
+    <link rel="mask-icon" href=" {% static 'safari-pinned-tab.svg ' %}" color="#5bbad5" >
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Roboto" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
+{% bootstrap_css %}
+<style>
+.navbar-default {
+    background-color: #2ECC71;
+}
+.dropdown-menu {
+  background-color: white;
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+
+.navbar-default .navbar-nav>li>a:focus,
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus,
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+    background: white;
+}
+
+.navbar-brand{
+    font-family: 'Roboto', sans-serif;
+}
+
+html,body {
+  height: 100%;
+  background-color: lightgrey;
+  font-family: 'Roboto', sans-serif;
+}
+
+p{
+  font-size: medium;
+}
+            </style>
+{% bootstrap_javascript %}
+</head>
+{% block bootstrap3_content %}
+<body>
+<nav  class="navbar navbar-default">
+<div class="container-fluid">
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav">
+            <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reviews <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+           <li><a href="{% url 'reviews:review_list' %}">Public Offices </a></li>
+           <li class="divider"></li>
+           <li><a href="{% url 'counties:review_list' %}">Counties </a></li>
+           <li class="divider"></li>
+           <li><a href="{% url 'constituencies:review_list' %}">Constituencies</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'wards:review_list' %}">Wards</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'parks:review_list' %}">Parks</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'companies:review_list' %}">Companies</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'hospitals:review_list' %}">Hospitals</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'hotels:review_list' %}">Hotels</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'colleges:review_list' %}">Colleges</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'schools:review_list' %}">Schools</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'sports:review_list' %}">Sports</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'associations:review_list' %}">Associations</a> </li>
+           <li class="divider"></li>
+         </ul>
+        </li>
+                <li><a href="{% url 'reviews:public_office_list' %}"><span class="glyphicon glyphicon-menu-hamburger">Public Offices</a></li>
+                <li><a href="{% url 'counties:counties_list' %}"><span class="glyphicon glyphicon-apple">Counties</a></li>
+				        <li><a href="{% url 'constituencies:constituencies_list' %}"><span class="glyphicon glyphicon-hourglass">Constituencies</a></li>
+                <li><a href="{% url 'wards:wards_list' %}"><span class="glyphicon glyphicon-lamp">Wards</a></li>
+            <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+           <li><a href="{% url 'parks:parks_list' %}"><span class="glyphicon glyphicon-cloud">Parks </a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'companies:companies_list' %}"><span class="glyphicon glyphicon-cloud">Companies </a></li>
+           <li class="divider"></li>
+           <li><a href="{% url 'hospitals:hospitals_list' %}"><span class="glyphicon glyphicon-glass">Hospitals </a></li>
+           <li class="divider"></li>
+           <li><a href="{% url 'hotels:hotels_list' %}"><span class="glyphicon glyphicon-heart">Hotels</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'colleges:colleges_list' %}"><span class="glyphicon glyphicon-blackboard">Colleges</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'schools:schools_list' %}"><span class="glyphicon glyphicon-book">Schools</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'sports:sports_list' %}"><span class="glyphicon glyphicon-certificate">Sports</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'associations:associations_list' %}"><span class="glyphicon glyphicon-flag">Associations</a> </li>
+           <li class="divider"></li>
+         </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Recommendations <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'reviews:user_recommendation_list' %}"><span class="glyphicon glyphicon-thumbs-up">Public Offices</a></li>
+           <li class="divider"></li>
+           <li><a href="{% url 'counties:user_recommendation_list' %}"><span class="glyphicon glyphicon-thumbs-up">Counties</a></li>
+           <li class="divider"></li>
+           <li><a href="{% url 'constituencies:user_recommendation_list' %}"><span class="glyphicon glyphicon-thumbs-up">Constituencies</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'wards:user_recommendation_list' %}"><span class="glyphicon glyphicon-thumbs-up">Wards</a></li>
+           <li class="divider"></li>
+           <li><a href="{% url 'parks:user_recommendation_list' %}"><span class="glyphicon glyphicon-thumbs-up">Parks</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'companies:user_recommendation_list' %}"><span class="glyphicon glyphicon-thumbs-up">Companies</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'hospitals:user_recommendation_list' %}"><span class="glyphicon glyphicon-thumbs-up">Hospitals</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'hotels:user_recommendation_list' %}"><span class="glyphicon glyphicon-thumbs-up">Hotels</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'colleges:user_recommendation_list' %}"><span class="glyphicon glyphicon-thumbs-up">Colleges</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'schools:user_recommendation_list' %}"><span class="glyphicon glyphicon-thumbs-up">Schools</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'sports:user_recommendation_list' %}"><span class="glyphicon glyphicon-thumbs-up">Sports</a> </li>
+           <li class="divider"></li>
+           <li><a href="{% url 'associations:user_recommendation_list' %}"><span class="glyphicon glyphicon-thumbs-up">Associations</a> </li>
+           <li class="divider"></li>
+          </ul>
+				<!-- <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'reviews:review_list' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="q" value="{{ request.GET.q }}" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form> -->
+            </ul>
+            {% if user.is_authenticated %}
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'reviews:user_review_list' user.username %}">Hi, {{ user.username }}</a></li>
+            {% else %}
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'reviews:review_list' %}">Hi, Guest</a></li>
+            </ul>
+            {% endif %}
+           </ul>
+        </div>
+        </div>
+    </nav>
+    
+    <h1>{% block title %}(no title){% endblock %}</h1>
+
+    {% bootstrap_messages %}
+
+    {% block content %}(no content){% endblock %}
+
+</body>
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% load comments_xtd comments %}
+
+<div class="container-fluid" style="margin-top: 20px; margin-bottom: 20px;">
+    <p class="text-center"><strong>Number of comments :<strong></p>
+<p class="text-center">{% get_comment_count for review as comment_count %} {{ comment_count }}</p>
+<p class="text-center">List of comments :</p>
+   {% render_comment_list for review %}
+</div>
+
+
+<div class="container text-center">
+<div class="panel panel-info">
+<div class="panel-heading text-center">
+<div style="font-family: Roboto;">Add a comment</div>
+	{% if user.is_authenticated %}
+	{% render_comment_form for review %}
+	{% else %} 
+    <li><a href="/accounts/login">Login to add a comment</a></li>
+    {% endif %}
+
+</div>
+</div>
+</div>
