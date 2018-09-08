@@ -1,0 +1,31 @@
+{% extends 'reviews\base.html' %}
+
+{% block title %}
+<div class="container">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h2>Hospitals</h2>
+{% endblock %}
+</div>
+{% block content %}
+{% if hospitals_list %}
+<div class="container">
+<div class="row">
+    {% for hospitals in hospitals_list reversed %}
+    <div class="col-xs-12 col-lg-4">
+        <h4><a href="{% url 'hospitals:hospitals_detail' hospitals.id %}">
+        {{ hospitals.name }}
+        </a></h4>
+        <h5>{{ hospitals.review_set.count }} reviews</h5>
+        <h5>{{ hospitals.average_rating | floatformat }} average rating</h5>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="container text-center">
+    <p>No hospitals are available.</p></div>
+{% endif %}
+</div>
+</div>
+</div>
+{% endblock %}

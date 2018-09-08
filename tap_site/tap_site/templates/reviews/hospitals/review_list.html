@@ -1,0 +1,46 @@
+{% extends 'reviews\base.html' %}
+{% load comments %}
+
+{% block title %}
+<div class="container">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h2>Latest reviews (Hospitals)</h2>
+</div>
+{% endblock %}
+
+{% block content %}
+{% if latest_review_list %}
+<div class="container">
+<div class="row">
+    {% for review in latest_review_list %}
+    <div class="col-xs-12 col-lg-12">
+        <h4 style="margin-top: 20px;font-weight: 200;font-family: Roboto"><a href="{% url 'hospitals:review_detail' review.id %}">
+        {{ review.hospitals.name }}
+        </a></h4>
+        <h6>Published on {{ review.pub_date }}</h6>
+        <h6>Rated {{ review.rating }} of 5 by <a href="{% url 'reviews:user_review_list' review.user_name %}" >{{ review.user_name }}</a></h6>
+        <h6>{% get_comment_count for review as comment_count %} {{ comment_count }} comment(s)</h6>
+        <div class="container-fluid">
+        {% if review.image %}
+        <img class="center-block img-responsive img-thumbnail" style="margin-bottom: 20px; width: 70%;
+  height: auto;" src="{{ review.image.url }}">
+        {% else %}
+        <p></p>
+        {% endif %}    
+       </div>
+        <div class="panel panel-info" style="margin-top: 20px;">
+        <p class="text-center" style="margin-top: 20px;font-family: Roboto;font-size: medium;">{{ review.comment }}</p>
+       </div>
+    <!-- {% include 'likes.html' %} -->
+       </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No reviews are available.</p>
+{% endif %}
+</div>
+</div>
+</div>
+{% include 'surveyfooter.html' %}
+{% endblock %}
