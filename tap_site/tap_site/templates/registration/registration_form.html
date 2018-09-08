@@ -1,0 +1,54 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n staticfiles bootstrap3  %}
+
+
+{% block title %}
+<div class="container form-signin text-center">
+<div class="panel panel-default">
+<div class="panel-body">
+{% trans "Register" %}
+</div>
+</div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+<div class="container form-signin">
+<div class="col-sm-12 col-md-auto">
+<div class="panel panel-default">
+<div class="panel-body">
+<form  method="post" action="">
+    {% csrf_token %}
+    {% bootstrap_form form layout='inline' %}
+    {% buttons %}
+    <div class="text-center">
+    <button type="submit" class="btn btn-primary">
+      {% bootstrap_icon "user" %} Register
+    </button>
+    </div>
+    {% endbuttons %} 
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-footer form-signin text-center">
+  Already have an account? <a href="{% url 'accounts:login' %}">Click here</a> to log in.
+ </div>
+
+</div>
+{% endblock %}
+
+
+{% comment %}
+**registration/registration_form.html**
+Used to show the form users will fill out to register. By default, has
+the following context:
+
+``form``
+    The registration form. This will be an instance of some subclass
+    of ``django.forms.Form``; consult `Django's forms documentation
+    <http://docs.djangoproject.com/en/dev/topics/forms/>`_ for
+    information on how to display this in a template.
+{% endcomment %}
