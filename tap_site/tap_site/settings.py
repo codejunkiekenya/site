@@ -149,7 +149,7 @@ INSTALLED_APPS = (
     'djangocms_snippet',
     'djangocms_googlemap',
     'djangocms_video',
-    'debug_toolbar',
+    #'debug_toolbar',
     'tap_site',
     'survey',
     'bootstrapform',
@@ -236,10 +236,10 @@ DATABASES = {
         'CONN_MAX_AGE': 0,
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'HOST': 'localhost',
-        'NAME': 'tap_master',
+        'NAME': 'tap_master_db',
         'PASSWORD': 'tap2017',
         'PORT': '5432',
-        'USER': 'postgres'
+        'USER': 'tap_master'
     }
 }
 
@@ -470,7 +470,7 @@ LOGGING = {
 }
 
 #debug toolbar
-INTERNAL_IPS = '127.0.0.1'
+#INTERNAL_IPS = '127.0.0.1'
 
 #django analytical
 GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-1234567-8'
