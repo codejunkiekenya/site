@@ -13,7 +13,7 @@ CSV_DIR = os.path.join(BASE_DIR, "csv")
 SECRET_KEY = 'e^l@vth%)g49j=_!7w%k3uomieqpemokyta18yj2$ay81dk^u&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['www.wenyenchi.com', 'localhost']
 
