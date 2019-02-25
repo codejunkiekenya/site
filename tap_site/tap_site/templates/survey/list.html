@@ -2,20 +2,19 @@
 {% load i18n %}
 
 {% block body %}
-<div class="container">
- <div class="panel panel-primary">
-   <div class="panel-heading">
-	<h1 style="font-family: Roboto;font-size: medium;">{% trans "Latest Surveys"%}</h1>
-   </div>
-   <div class="panel-body">
-	<ul>
-		{% for survey in surveys %}
-		<div class="panel-heading">
-		<li><a href="{{ survey.get_absolute_url }}"><strong>{% trans "Take the Survey: "%} {{survey.name}}</strong></a></li>
-		</div>
-		{% endfor %}
-	</ul>
-	</div>
-	</div>
+<div class="row">
+ <div class="col-md-8">
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="border-bottom border-gray pb-2 mb-0" style="padding-bottom: 20px;padding-top: 20px;">{% trans "Community Surveys"%}</h6>
+    {% for survey in surveys %}
+	<div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-black"><a href="{{ survey.get_absolute_url }}">{% trans "Take Survey: "%} {{survey.name}}</a></strong>
+      </p>
+    </div>
+	{% endfor %}
+  </div>
+ </div>
 </div>
 {% endblock %}
