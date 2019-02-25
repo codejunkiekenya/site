@@ -1,89 +1,158 @@
-{% load cms_tags menu_tags sekizai_tags i18n postman_tags staticfiles%}
+{% load bootstrap3 staticfiles comments cms_tags menu_tags analytical sekizai_tags i18n postman_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    {% analytical_head_top %}
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
-    <title>{% block title %}Wenyenchi{% endblock %}</title>
-    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Roboto" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link type="text/css" media="all" rel="stylesheet" href="{% static 'postman/css/postman.css' %}" />
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Wenyenchi - The Public Accountability Project</title>
 
-    
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/offcanvas/">
 
-    <!-- CSS Styling -->
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
 
- .navbar-default {
-    background-color: #2ECC71;
-}
-.navbar-default .navbar-nav>li>a:focus, 
-.navbar-default .navbar-nav>li>a:hover,
-.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, 
-.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover  {
-  background: white;
-}
-
-html,body {
-  background-color: lightgrey;
-  text-align: center;
-  font-family: 'Roboto', sans-serif;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}page-break-before: 
-
-</style>
-    {% block extrahead %}{% endblock %}
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
+{% analytical_head_bottom %}
 </head>
-<body>
-{% block postman_menu %}
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
 
-        <!-- Header -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
+{% analytical_body_top %}
+{% block body %}
+ <body class="bg-light">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-black">
+  <a class="navbar-brand mr-auto mr-lg-0 text-green font-italic header-text-lead" href="#">Wenyenchi</a>
+  <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link header-text-lead font-italic" href="#">Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/reviews">Reviewer</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/polls">Polls</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/survey">Surveys</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="#">Magazine</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/messages">Messaging</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle header-text-lead font-italic" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Support</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item header-text-lead font-italic" href="/helpdesk">HelpDesk</a>
+          <a class="dropdown-item header-text-lead font-italic" href="/contact">Contact Us</a>
+          <a class="dropdown-item header-text-lead font-italic" href="#">FAQS</a>
         </div>
-
-        <!-- Items -->
-        <div class="collapse navbar-collapse" id="topNavBar">
-            <ul class="nav navbar-nav navbar-right" id="postman_menu"">{% postman_unread as unread_count %}
-                {% if user.is_authenticated %}
- <li><a href="{% url 'postman:inbox' %}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;{% trans "Inbox" %}{% if unread_count %} <strong>({{ unread_count }})</strong>{% endif %}</a></li>
- <li><a href="{% url 'postman:sent' %}"><span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp;{% trans "Sent Messages" %}</a></li>
- <li><a href="{% url 'postman:write' %}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;{% trans "Write" %}</a></li>
- <li><a href="{% url 'postman:archives' %}"><span class="glyphicon glyphicon-saved" aria-hidden="true"></span>&nbsp;{% trans "Archives" %}</a></li>
- <li><a href="{% url 'postman:trash' %}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;{% trans "Trash" %}</a></li>
- <li><a href="/accounts/logout"><span class="glyphicon glyphicon-log-out"></span>{% trans "Logout" %}</a></li>
- {% else %}
-<li><a href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span>{% trans "Login" %}</a></li>
-{% endif %}
-</ul>
-
-        </div>
-
-    </div>
+      </li>
+    </ul>
+	<!-- registration/signin -->
+	{% if user.is_authenticated %}
+    <li class="nav-item">
+	<a class="nav-link header-text-lead font-italic" href="{% url 'reviews:user_review_list' user.username %}">Hi, {{ user.username }}</a>
+	</li>
+	<!-- empty space -->
+	&nbsp;
+	&nbsp;
+	<form class="form-inline my-2 my-lg-0">
+	  <a href="{% url 'accounts:logout' %}"style="color:inherit" >
+      <button class="btn btn-outline-success my-2 my-sm-0 header-text-lead font-italic" type="submit">SignOut</button>
+   </a>
+    </form>
+	{% else %}
+	<li class="nav-item">
+	<a class="nav-link header-text-lead font-italic" href="{% url 'reviews:review_list' %}">Hi, Guest</a>
+	</li>
+    <form class="form-inline my-2 my-lg-0">
+	  <a  href="{% url 'registration_register' %}"style="color:inherit" >
+      <button class="btn btn-outline-success my-2 my-sm-0 header-text-lead font-italic" type="submit">SignUp</button>
+   </a>
+    </form>
+	<!-- empty space -->
+	&nbsp;
+	&nbsp;
+	<form class="form-inline my-2 my-lg-0">
+	  <a href="{% url 'accounts:login' %}"style="color:inherit" >
+      <button class="btn btn-outline-success my-2 my-sm-0 header-text-lead font-italic" type="submit">SignIn</button>
+   </a>
+    </form>
+	{% endif %}
+  </div>
 </nav>
-{% endblock %}
-{% block content %}{% endblock %}
+
+<main role="main" class="container">
+  <div class="d-flex align-items-center p-3 my-3 text-black bg-purple rounded shadow-sm text-center">
+    <div class="lh-100">
+      <h4 class="mb-0 text-white lh-100 header-text font-italic">The Accountability Project</h4>
+      <hr>
+      <h4 class="font-italic header-text-lead">"Speak Up & Be Heard" - "Sema Usikike"</h4>
+    </div>
+  </div>
+  <div class="container bg-white rounded shadow-sm">
+  <nav class="nav nav-underline">
+    <a class="nav-link  header-text-lead font-italic"active" href="{% url 'reviews:review_list' %}">Public Offices</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'counties:review_list' %}">Counties</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'constituencies:review_list' %}">Constituencies</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'wards:review_list' %}">Wards</a>
+	<a class="nav-link header-text-lead font-italic" href="{% url 'hospitals:review_list' %}">Hospitals</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'schools:review_list' %}">Schools</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'colleges:review_list' %}">Colleges</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'hotels:review_list' %}">Hotels</a>
+	<a class="nav-link header-text-lead font-italic" href="{% url 'parks:review_list' %}">Parks</a>
+	<a class="nav-link header-text-lead font-italic" href="{% url 'companies:review_list' %}">Companies</a>
+	<a class="nav-link header-text-lead font-italic" href="{% url 'associations:review_list' %}">Associations</a>
+	<a class="nav-link header-text-lead font-italic" href="{% url 'sports:review_list' %}">Sports</a>
+	 
+	 <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2 font-italic" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0 font-italic" name="q" value="{{ request.GET.q }}" type="submit">Search</button>
+    </form>
+	
+  </nav>
+</div>
+    
+    <h1>{% block title %}(no title){% endblock %}</h1>
+
+    {% bootstrap_messages %}
+
+    {% block content %}(no content){% endblock %}
+    {% include 'footer.html' %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="{% static 'css/offcanvas.css' %}"></script>
 </body>
+{% endblock %}
+{% analytical_body_bottom %}
 </html>
 
 
