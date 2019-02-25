@@ -3,154 +3,563 @@
 <html lang="en">
 <head>
     {% analytical_head_top %}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Wenyenchi</title>
-    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
-    <link rel="apple-touch-icon" sizes="180x180" href="{%  static 'apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{%  static 'favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{%  static 'favicon-16x16.png' %}">
-    <link rel="manifest" href=" {%  static 'site.webmanifest' %}">
-    <link rel="mask-icon" href=" {% static 'safari-pinned-tab.svg ' %}" color="#5bbad5" >
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Wenyenchi - The Public Accountability Project</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/offcanvas/">
+
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Roboto" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <!-- CSS Styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
 
- .navbar-default {
-    background-color: #2ECC71;
-}
-.navbar-default .navbar-nav>li>a:focus, 
-.navbar-default .navbar-nav>li>a:hover,
-.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, 
-.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover  {
-  background: lightgrey;
-}
-.dropdown-menu {
-    background-color: transparent;
-}
-html,body {
-  height: 100%;
-  background-color: #C0C0C0FF;
-  text-align: center;
-  font-family: 'Roboto', sans-serif;
-}
-
-p{
-  font-family: Roboto;font-size: medium;"  
-}
-/* Extra markup and styles for table-esque vertical and horizontal centering */
-
-.site-wrapper {
-    display: table;
-    width: 100%;
-    height: 100%;
-    /* For at least Firefox */
-    min-height: 100%;
-    -webkit-box-shadow: inset 0 0 2px black;
-}
-
-.site-wrapper-inner {
-    display: table-cell;
-    vertical-align: top;
-}
-
-.cover-container {
-    margin-right: auto;
-    margin-left: auto;
-}
-
-
-/* Padding for spacing */
-
-.inner {
-    padding: 30px;
-}
-
-
-</style>
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
+	
 {% analytical_head_bottom %}
 </head>
-<body>
-    {% analytical_body_top %}
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
 
-        <!-- Header -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
-        </div>
-
-        <!-- Items -->
-        <div class="collapse navbar-collapse" id="topNavBar">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/reviews"><span class="glyphicon glyphicon-thumbs-down"></span>{% trans "Reviewer" %}</a></li>
-                        <li><a href="/survey"><span class="glyphicon glyphicon-eye-open"></span>{% trans "Surveys" %}</a></li>
-                        <li><a href="/polls"><span class="glyphicon glyphicon-comment"></span>{% trans "Polls" %}</a></li>
-                        {% if user.is_authenticated %}
-                        <li><a href="/messages"><span class="glyphicon glyphicon-envelope"></span>{% trans "Messages" %}</a></li>
-                        <li><a href="/helpdesk"><span class="glyphicon glyphicon-headphones"></span>{% trans "Helpdesk" %}</a></li>
-                        <li><a href="{% url 'accounts:logout' %}"><span class="glyphicon glyphicon-log-out"></span>{% trans "Logout" %}</a></li>
-                        {% else %}
-                        <li><a href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span>{% trans "Login" %}</a></li>
-                        {% endif %}
-                        
-                    </ul>
-                </div>
-
-    </div>
-</nav>
+{% analytical_body_top %}
 {% block body %}
-<div class="container">
-        <div class="site-wrapper">
-            <div class="site-wrapper-inner">
-                <div class="cover-container">
-                    <div class="inner cover">
-                        <h1 class="cover-heading">Welcome to Wenyenchi </h1>
-                        <h1 class="cover-heading">The Public Accountability Project (P.A.P)</h1>
-                        <p class="lead">This is a Citizen Engagement Platform whose sole intention is to mobilize a community of problem solvers.</p> 
-                        <p class="lead">Everyone has a voice! Tell your story!</p>
-                        <p class="lead">Everyone has a right to be heard! Tell your story!</p>
-                        <h1 class="cover-heading">"SEMA USIKIKE"</h1>
-                        <hr>
-                        <img src="{% static "Wenyenchi Logo.png" %}" class=" center-block img-responsive" alt="Logo"/>
-                        <hr>
-                        <p>The project consists of:-</p>
-                        <p><strong>Reviewer</strong> where community members get to rate <strong>public offices</strong>, <strong>instituitions</strong> and <strong>companies</strong> based on <strong>service delivery</strong>, <strong>diversity management</strong>, <strong>fiscal management</strong>, <strong>land, water & waste management</strong>, <strong>responsiveness to community grievances</strong>, <strong>healthcare</strong>, <strong>education</strong> e.t.c.</p>
-                        <p>The reviewer writes a review and then rates their choice on a scale of <strong>1 (worst)</strong> to <strong>5 (best)</strong>.</p>
-                    <p>The community members will then use the information to generate reports and recommendations for each rated entity. The information will show the development progress of the country from the citizens' point of view.</p>
-                        <p><strong> Survey</strong> is geared at collecting huge amounts of data for a specific subject or area (ideal for companies, researchers and policy makers).</p>
-                        <p><strong>Polls</strong> is a place where community members can create and run their own specific polls. This is ideal for policy makers, pollsters and media professionals.</p>
-                        <p>Wenyenchi has a recommendation system built on machine learning which connects you with other people who have reviewed a similar entity. In short it connects those who have shared problems and those who have similar experiences.</p>
-                        <div class="inner">
-                            <a href="/accounts/register" class="btn btn-lg btn-success">Register & Tell Your Story</a>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
+ <body class="bg-light">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-black">
+  <a class="navbar-brand mr-auto mr-lg-0 text-green font-italic header-text-lead" href="/">Wenyenchi</a>
+  <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link header-text-lead font-italic" href="/">Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/reviews">Reviewer</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/polls">Polls</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/survey">Surveys</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="#">Magazine</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/messages">Messaging</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle header-text-lead font-italic" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Support</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item header-text-lead font-italic" href="/helpdesk">HelpDesk</a>
+          <a class="dropdown-item header-text-lead font-italic" href="/contact">Contact Us</a>
+          <a class="dropdown-item header-text-lead font-italic" href="#">FAQS</a>
         </div>
-        <div class="mastfoot">
-                        <div class="inner">
-                            <p>&copy; 2018 | Wenyenchi -The Public Accountability Project (P.A.P) | <a href="/terms/">  All Rights Reserved</a> | <a href="/contact">  Advertising</a> |<a href="/terms/">  Terms & Conditions</a> |<a href="/privacy/">  Privacy Policy</a>|<a href="/contact"> Contact Us </a></p>
-                        </div>
-                    </div>
-      </div>
+      </li>
+    </ul>
+	<!-- registration/signin -->
+	{% if user.is_authenticated %}
+    <li class="nav-item">
+	<a class="nav-link header-text-lead font-italic" href="{% url 'reviews:user_review_list' user.username %}">Hi, {{ user.username }}</a>
+	</li>
+	<!-- empty space -->
+	&nbsp;
+	&nbsp;
+	<form class="form-inline my-2 my-lg-0">
+	  <a href="{% url 'accounts:logout' %}"style="color:inherit" >
+      <button class="btn btn-outline-success my-2 my-sm-0 header-text-lead font-italic" type="submit">SignOut</button>
+   </a>
+    </form>
+	{% else %}
+	<li class="nav-item">
+	<a class="nav-link header-text-lead font-italic" href="{% url 'reviews:review_list' %}">Hi, Guest</a>
+	</li>
+    <form class="form-inline my-2 my-lg-0">
+	  <a  href="{% url 'accounts:register' %}"style="color:inherit" >
+      <button class="btn btn-outline-success my-2 my-sm-0 header-text-lead font-italic" type="submit">SignUp</button>
+   </a>
+    </form>
+	<!-- empty space -->
+	&nbsp;
+	&nbsp;
+	<form class="form-inline my-2 my-lg-0">
+	  <a href="{% url 'accounts:login' %}"style="color:inherit" >
+      <button class="btn btn-outline-success my-2 my-sm-0 header-text-lead font-italic" type="submit">SignIn</button>
+   </a>
+    </form>
+	{% endif %}
+  </div>
+</nav>
+
+<main role="main" class="container">
+  <div class="d-flex align-items-center p-3 my-3 text-black bg-purple rounded shadow-sm text-center">
+    <div class="lh-100">
+      <h4 class="mb-0 text-white lh-100 header-text font-italic">The Accountability Project</h4>
+      <hr>
+      <h4 class="font-italic header-text-lead">"Speak Up & Be Heard" - "Sema Usikike"</h4>
+    </div>
+  </div>
+  <div class="container bg-white rounded shadow-sm">
+  <nav class="nav nav-underline">
+    <a class="nav-link  header-text-lead font-italic"active" href="{% url 'reviews:review_list' %}">Public Offices</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'counties:review_list' %}">Counties</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'constituencies:review_list' %}">Constituencies</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'wards:review_list' %}">Wards</a>
+	<a class="nav-link header-text-lead font-italic" href="{% url 'hospitals:review_list' %}">Hospitals</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'schools:review_list' %}">Schools</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'colleges:review_list' %}">Colleges</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'hotels:review_list' %}">Hotels</a>
+	<a class="nav-link header-text-lead font-italic" href="{% url 'parks:review_list' %}">Parks</a>
+	<a class="nav-link header-text-lead font-italic" href="{% url 'companies:review_list' %}">Companies</a>
+	<a class="nav-link header-text-lead font-italic" href="{% url 'associations:review_list' %}">Associations</a>
+	<a class="nav-link header-text-lead font-italic" href="{% url 'sports:review_list' %}">Sports</a>
+	 
+	 <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2 font-italic" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0 font-italic" name="q" value="{{ request.GET.q }}" type="submit">Search</button>
+    </form>
+	
+  </nav>
+</div>
+
+<div class="row">
+<div class="col-md-8">
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="border-bottom border-gray pb-2 mb-0 font-italic">Brief Introduction</h6>
+    <div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark" style="padding-bottom:20px;padding-top:20px;">What is The Accountability Project a.k.a "Wenyenchi"?</strong>
+        Wenyenchi is a citizen engagement platform; an online baraza where citizens can engage directly with public and private service providers. It is a meeting point
+		where experts from different parts of the world can assist community members to create homegrown solutions to change their lives for the better. It is also a place
+		where problem-solvers can showcase their solutions, test their prototypes and monitor the socio-economic impact of the solution on the community.
+      </p>
+    </div>
+    <div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">How does it work?</strong>
+        The platform uses a scorecard of between 1 and 5. 1 means that the problem is ongoing and hasn't been solved while
+		5 means that the problem has been completely solved. In this format citizens, researchers and policy analysts can track 
+		the progress of the problem and the success of implemented solutions. Constant Feedback from the community members
+		will help in succesful implementation and evaluation of a solution.
+    </div>
+    <div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">How will I benefit?</strong>
+        The platform provides a scorecard to measure economic progress.The information collected from community members 
+		and then analyzed by experts can be used in land use planning, business / entrepreneurship capacity development,
+		natural resource development, utilization of traditional community lands and social capacity. The platform gives 
+		opportunities for community members to connect with other community members and problem-solvers from any part
+		of the country or the world and this will improve social cohesion and increase the transfer of knowledge. We will be
+		using the information to create sustainable development models.
+      </p>
+    </div>
+	<div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Who is this project for?</strong>
+        This project is for everyone; from a high school student, university professor, government official, company executive,
+journalist, ordinary citizens to university students. There are no qualifications or conditions to be part of the project. We are crowdsourcing problem-solving.
+We believe that sustainable homegrown solutions are the key to unlocking the mighty potential of the African continent.
+	
+      </p>
+    </div>
+	<div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">How do I contribute?</strong>
+        Register and start reviewing development projects or services. All you need is a smartphone with a camera and
+		an internet connection. Once you have identified a problem in an area. Take a picture and write a review about
+		it. Share it with community members and then the problem-solving starts. Note that the picture is optional. You can
+		write a review without a picture but a picture is worth a 1000 words.
+      </p>
+    </div>
+	<div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">How does the future look like?</strong>
+        We would like to add at least half of the Sub-saharan countries to the platform by 2025 and the rest by 2030.
+		we willbe adding data analysis tools like 3D charts, line graphs, and maps to give
+		users an even richer experience.
+
+      </p>
+    </div>
+	<div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Are you hiring?</strong>
+        Our goal is to reach at least 50,000 community members and problem-solvers and then we can start the hiring process,
+		We will be recruiting project managers, animators, writers, data analysts, developers, and other office staff. For now
+		you can volunteer as a mobilizer or a "wenyenchi ambassador". Mobilizers will be considered first whenever a position
+		needs to be filled.
+      </p>
+    </div>
+  </div>
+  </div>
+  <aside class="col-md-4 blog-sidebar" style="padding-top: 20px;padding-bottom:20px;">
+      <div class="p-4 mb-3 bg-white rounded">
+        <h4 class="font-italic">Social Mission</h4>
+        <p class="mb-0">To create a <strong>community of problem-solvers</strong> and to connect problem-solvers with people who have <strong>shared community problems and community interests.</strong> REGISTER NOW. BECOME A PROBLEM-SOLVER.
+     </div>
+  </aside>
+</div>
+<!-- end of row reviews -->
+
+
+<div class="row">
+<div class="col-md-8">
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="border-bottom border-gray pb-2 mb-0">Development Indicators</h6>
+    <div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"></rect><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Fiscal Management</strong>
+        In economics and political science, fiscal policy is the use of government 
+		revenue collection and expenditure to influence the economy. (Source: Wikipedia)
+      </p>
+    </div>
+	<div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"></rect><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Service Delivery</strong>
+        There are two ways of achieving service delivery. The‘long route’ of citizens’ involvement in national or local politics to pressure government to deliver services; or through the ‘short route’ of citizens 
+		engaging directly with public or private service providers. (Source: World Bank)
+      </p>
+    </div>
+    <div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"></rect><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Education</strong>
+        Education is fundamental to development and growth. The human mind makes possible all development achievements, from health advances and agricultural innovations to efficient public administration and private sector growth. 
+		For countries to reap these benefits fully, they need to unleash the potential of the human mind. (Source: World Bank)
+      </p>
+    </div>
+	<div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"></rect><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Health Care</strong>
+        Four out of every five deaths of children under age five occur in Sub-Saharan Africa and Southern Asia.
+Only half of women in developing regions receive the recommended amount of health care they need. AIDS is now the leading cause of death among adolescents (aged 10–19) in Africa 
+and the second most common cause of death among adolescents globally. (Source: United Nations)		</p>
+    </div>
+    <div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"></rect><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Land, Water & Waste Management</strong>
+        Water is a finite and irreplaceable resource that is fundamental to human well-being. It is only renewable if well managed. Today, more than 1.7 billion people live in river basins where depletion through use exceeds natural recharge, a trend that will see two-thirds of the world’s population living in water-stressed countries by 2025. Water can pose a serious challenge to sustainable development but managed efficiently and equitably, water can play a key enabling role in strengthening the resilience of social, 
+		economic and environmental systems in the light of rapid and unpredictable changes. (Source: United Nations)
+      </p>
+    </div>
+	<div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"></rect><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Diversity Management</strong>
+        Diversity management refers to organizational actions that aim to promote greater inclusion of employees from different backgrounds into an organization's 
+		structure through specific policies and programs. (Source : Corporate Finance Institute)
+      </p>
+    </div>
+	<div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"></rect><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Response to Community Grievances</strong>
+        Development is a human right. Everyone is "entitled to participate in, contribute to, and enjoy economic, social, cultural and political development, in which all human rights and fundamental freedoms can be fully realized," (Source: United Nations)
+		
+      </p>
+    </div>
+  </div>
+  </div>
+  <aside class="col-md-4 blog-sidebar" style="padding-top: 20px;padding-bottom:20px;">
+      <div class="p-4 mb-3 bg-white rounded">
+        <h4 class="font-italic">Indicators are "Perceptions of Well-Being"</h4>
+        <p class="mb-0"> Indicators reﬂect individuals’ perceptions of relevant dimensions of human development; education quality, health care quality, standard of living, personal
+safety, freedom of choice and overall life satisfaction (UNDP).
+     </div>
+  </aside>
+</div>
+<!-- end of row features -->
+<div class="row">
+<div class="col-md-8">
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="border-bottom border-gray pb-2 mb-0">Community Surveys - Economic Development</h6>
+	<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        A community can improve its ability to undertake economic development activities by
+having dedicated and knowledgeable staff devoted to community economic development.
+Dedicated community resources for entrepreneurship and business development, along
+with supportive leadership and engaged members, are cornerstones of successful
+economic development.
+      </p>
+    <div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#6f42c1"></rect><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text></svg>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Economic Development | Entrepreneurial Readiness and the Business
+Environment</strong>
+        This section will help you evaluate your community’s
+economic development resources and processes:
+      </p>
+    </div>
+	<small class="d-block text-right mt-3">
+      <a href="/survey">Check Survey</a>
+    </small>
+    <div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#6f42c1"></rect><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text></svg>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Economic Development | Planning and Resources</strong>
+        This section will help you evaluate your community’s
+economic development resources and processes:
+      </p>
+    </div>
+	<small class="d-block text-right mt-3">
+      <a href="/survey">Check Survey</a>
+    </small>
+    <div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#6f42c1"></rect><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text></svg>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Economic development | Civic Capacity</strong>
+        This section will help you evaluate your community’s
+economic development resources and processes:
+      </p>
+    </div>
+	<small class="d-block text-right mt-3">
+      <a href="/survey">Check Survey</a>
+    </small>
+	<div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#6f42c1"></rect><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text></svg>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Economic Development | Access to Capital</strong>
+        This section will help you evaluate your community’s
+economic development resources and processes:
+      </p>
+    </div>
+	<small class="d-block text-right mt-3">
+      <a href="/survey">Check Survey</a>
+    </small>
+	<div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#6f42c1"></rect><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text></svg>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Economic Development | Economic Viability</strong>
+        This section will help you evaluate your community’s
+economic development resources and processes:
+      </p>
+    </div>
+	<small class="d-block text-right mt-3">
+      <a href="/survey">Check Survey</a>
+    </small>
+	<div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#6f42c1"></rect><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text></svg>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Economic development | Resources From the Land</strong>
+        This section will help you evaluate your community’s
+economic development resources and processes:
+      </p>
+    </div>
+	<small class="d-block text-right mt-3">
+      <a href="/survey">Check Survey</a>
+    </small>
+  </div>
+  </div>
+  <aside class="col-md-4 blog-sidebar" style="padding-top: 20px;padding-bottom:20px;">
+      <div class="p-4 mb-3 bg-white rounded">
+        <h4 class="font-italic">Economic Development Readiness Questionnaire</h4>
+        <p class="mb-0">The questionnaire used in this project is derived from  <strong>"The First Nations Economic Development Readiness 
+		Questionnaire"</strong> developed by <strong>Ontario Ministry of Economic Development & Innovation</strong> in 2012 as a <strong>measurement
+		system</strong> to gauge the First Nations communities <strong>strengths, challenges</strong> and <strong>economic growth potential.</strong>
+     </div>
+  </aside>
+</div>
+<!-- end of row surveys -->
+<div class="row">
+<div class="col-md-8">
+  <div class="my-3 p-3 bg-white rounded shadow-sm font-italic">
+    <h6 class="border-bottom border-gray pb-2 mb-0">Problem Solving Approach</h6>
+    <div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark" style="padding-bottom:20px;padding-top:20px;"> Real World Example Problem - "Unregistered Drones in Kenya"</strong>
+        The Kenyan government is having a difficult time trying to ensure that all drones are duly registered.
+      </p>
+    </div>
+    <div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Points to Consider</strong>
+        Based on security concerns this problem needs to be resolved urgently. Drone technology is being used in many sectors; wildlife tracking to
+		prevent incidences of poaching, search % rescue missions, dropping aid and medicine to far flung areas, 3D mapping and in aerial 
+		photography and filmmaking. The government's role is to make sure that Kenyans perform these tasks within the
+		legal requirements of the law.
+		
+      </p>
+    </div>
+    <div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Final Solution</strong>
+        The final solution is a digital registration platform named "Drone Registry Kenya". This is a web application
+		where drone owners can digitally registered their drones. Each drone owner has an account to add and delete drones
+		which makes it easier for them to update their registration information. The drone owner can also create flight
+		schedules that will be used to monitor unregistered flight schedules and to apprehend non registered drones.
+      </p>
+    </div>
+	<small class="d-block text-right mt-3">
+      <a href="#">Check Final Solution</a>
+    </small>
+  </div>
+  </div>
+  <aside class="col-md-4 blog-sidebar" style="padding-top: 20px;padding-bottom:20px;">
+      <div class="p-4 mb-3 bg-white rounded">
+        <h4 class="font-italic">Problem Solving</h4>
+        <p class="mb-0 text-black"><em>1. Understand the Problem</em></p>
+		<p class="mb-0 text-black"><em>2. Brainstorm Solutions<em></p>
+		<p class="mb-0 text-black"><em>3. Choose Solution</em></p>
+		<p class="mb-0 text-black"><em>4. Implement Solution</em></p>
+		<p class="mb-0 text-black"><em>5. Evaluate Solution</em></p>
+     </div>
+  </aside>
+</div>
+<!-- end of row problem solving -->
+
+<div class="row">
+<div class="col-md-8">
+  <div class="my-3 p-3 bg-white rounded shadow-sm font-italic">
+    <h6 class="border-bottom border-gray pb-2 mb-0">Uses and limitations of citizen satisfaction data</h6>
+    <div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark" style="padding-bottom:20px;padding-top:20px;"> “Call to Action”</strong>
+        Service delivery data can
+serve as a “call to action” for governments
+if the data reveal outcomes that fall short
+of expectations.(Source: The Life in Transition Survey)
+      </p>
+    </div>
+	<div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark" style="padding-bottom:20px;padding-top:20px;"> Diagnostic function</strong>
+        Increased
+data availability can also allow for better
+measurement of policies and outcomes
+and for impact evaluation.(Source: The Life in Transition Survey)
+      </p>
+    </div>
+	<div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark" style="padding-bottom:20px;padding-top:20px;"> Progress Monitoring</strong>
+        Data on
+peoples’ satisfaction with their experience
+and perceptions of quality can help
+complement more objective measures
+of service delivery (for example, from
+facilities surveys) to help policy-makers and
+development practitioners track the progress
+of country programmes and strategies.(Source: The Life in Transition Survey)
+      </p>
+    </div>
+	<div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark" style="padding-bottom:20px;padding-top:20px;"> Presence of Bias</strong>
+        There are a number of caveats in the
+interpretation of satisfaction data. The
+presence of “externalities” (for example,
+additional social benefts of education,
+public health and so on) may mean that
+user satisfaction does not capture the full
+extent of desired social outcomes.(Source: The Life in Transition Survey)
+      </p>
+    </div>
+	<div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark" style="padding-bottom:20px;padding-top:20px;"> Social Conditioning</strong>
+        Even if individuals and society share the
+same goal – such as improvements in
+student learning – some people may have
+been conditioned to have low expectations,
+leading them to report high satisfaction
+despite poor service delivery outcomes.(Source: The Life in Transition Survey)
+      </p>
+    </div>
+	<div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark" style="padding-bottom:20px;padding-top:20px;"> Service Delivery Standards</strong>
+        Reported
+satisfaction may be disconnected from actual
+quality of services if people do not have a basis
+for comparison, or information, about what level
+of quality and service they should be expecting.(Source: The Life in Transition Survey)
+      </p>
+    </div>
+  </div>
+  </div>
+  <aside class="col-md-4 blog-sidebar" style="padding-top: 20px;padding-bottom:20px;">
+      <div class="p-4 mb-3 bg-white rounded">
+        <h4 class="font-italic">Life in Transition Survey</h4>
+        <p class="mb-0 text-black"><strong>The Life in Transition Survey</strong> provides a rich source of
+information about the<strong> experience</strong> and<strong> perceptions</strong> of<strong> citizens</strong>
+with respect to their<strong> interactions with public services</strong>.</p>
+     </div>
+  </aside>
+</div>
+<!-- end of row uses and limitations -->
+ 
+
+ <footer class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md">
+      <small class="d-block mb-3 text-muted">The Accountability Project © 2018 - 2019</small>
+	  <small class="d-block mb-3 text-muted">Powered by Django, Bootstrap & Scikit-Learn</small>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Features</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="/reviews">Reviewer</a></li>
+        <li><a class="text-muted" href="/polls">Polls</a></li>
+        <li><a class="text-muted" href="/survey">Surveys</a></li>
+        <li><a class="text-muted" href="/messages">Messaging</a></li>
+        <li><a class="text-muted" href="#">Magazine</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Support</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="/helpdesk">Help Desk</a></li>
+        <li><a class="text-muted" href="/contact">Contact Us</a></li>
+        <li><a class="text-muted" href="#">FAQS</a></li>
+        <li><a class="text-muted" href="#">Documentation</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Partners</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Business</a></li>
+        <li><a class="text-muted" href="#">Education</a></li>
+        <li><a class="text-muted" href="#">Government</a></li>
+        <li><a class="text-muted" href="#">Health Care</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>About</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="#">Team</a></li>
+        <li><a class="text-muted" href="#">Locations</a></li>
+        <li><a class="text-muted" href="/privacy">Privacy</a></li>
+        <li><a class="text-muted" href="/terms">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</main>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="{% static 'js/offcanvas.js' %}"></script>
 {% endblock %}
 {% analytical_body_bottom %}
 </body>
