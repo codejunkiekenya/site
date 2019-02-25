@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load saved_queries %}
 {% load load_helpdesk_settings %}
-{% load static from staticfiles %}
+{% load staticfiles %}
 {% with request|load_helpdesk_settings as helpdesk_settings %}
 {% with user|saved_queries as user_saved_queries_ %}
 <!DOCTYPE html>
@@ -19,8 +19,7 @@
 
     <!-- Bootstrap Core CSS -->
     {% if helpdesk_settings.HELPDESK_USE_CDN %}
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     {% else %}
     <link href="{% static 'helpdesk/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     {% endif %}
@@ -48,7 +47,7 @@
 
     <!-- jQuery -->
     {% if helpdesk_settings.HELPDESK_USE_CDN %}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     {% else %}
     <script src="{% static 'helpdesk/vendor/jquery/jquery.min.js' %}"></script>
     {% endif %}
@@ -59,7 +58,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     {% if helpdesk_settings.HELPDESK_USE_CDN %}
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     {% else %}
     <script src="{% static 'helpdesk/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
     {% endif %}
@@ -71,6 +70,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{% static 'helpdesk/dist/js/sb-admin-2.js' %}"></script>
+	<link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
     <!-- RSS -->
     <link rel='alternate' href='{% url 'helpdesk:rss_user' user.get_username %}' type='application/rss+xml' title='{% trans "My Open Tickets" %}' />
@@ -105,34 +106,85 @@
     /* query entries */
     #dropdown li.headerlink:hover ul { display: block; width: auto; }
     #dropdown li.headerlink:hover ul li { padding: 5px; margin: 1px; float: none; display: block; }
-    .navbar-default {
-    background-color: #2ECC71;
-}
-.navbar-default .navbar-nav>li>a:focus, 
-.navbar-default .navbar-nav>li>a:hover,
-.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, 
-.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover  {
-  background: white;
-}
-
-html,body {
-  height: 100%;
-  background-color: lightgrey;
-  text-align: center;
-  font-family: 'Roboto', sans-serif;
-  font-family: 'Montserrat', sans-serif;
-}
+    
     </style>
 
     {% block helpdesk_head %}{% endblock %}
 
 </head>
 
-<body id="helpdesk-body">
+<body id="helpdesk-body" class="bg-light">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-black">
+  <a class="navbar-brand mr-auto mr-lg-0 text-green font-italic header-text-lead" href="/">Wenyenchi</a>
+  <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link header-text-lead font-italic" href="/">Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/reviews">Reviewer</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/polls">Polls</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/survey">Surveys</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="#">Magazine</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/messages">Messaging</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle header-text-lead font-italic" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Support</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item header-text-lead font-italic" href="/helpdesk">HelpDesk</a>
+          <a class="dropdown-item header-text-lead font-italic" href="/contact">Contact Us</a>
+          <a class="dropdown-item header-text-lead font-italic" href="#">FAQS</a>
+        </div>
+      </li>
+    </ul>
+	<!-- registration/signin -->
+	{% if user.is_authenticated %}
+    <li class="nav-item">
+	<a class="nav-link header-text-lead font-italic" href="{% url 'reviews:user_review_list' user.username %}">Hi, {{ user.username }}</a>
+	</li>
+	<!-- empty space -->
+	&nbsp;
+	&nbsp;
+	<form class="form-inline my-2 my-lg-0">
+	  <a href="{% url 'accounts:logout' %}"style="color:inherit" >
+      <button class="btn btn-outline-success my-2 my-sm-0 header-text-lead font-italic" type="submit">SignOut</button>
+   </a>
+    </form>
+	{% else %}
+	<li class="nav-item">
+	<a class="nav-link header-text-lead font-italic" href="{% url 'reviews:review_list' %}">Hi, Guest</a>
+	</li>
+    <form class="form-inline my-2 my-lg-0">
+	  <a  href="{% url 'registration_register' %}"style="color:inherit" >
+      <button class="btn btn-outline-success my-2 my-sm-0 header-text-lead font-italic" type="submit">SignUp</button>
+   </a>
+    </form>
+	<!-- empty space -->
+	&nbsp;
+	&nbsp;
+	<form class="form-inline my-2 my-lg-0">
+	  <a href="{% url 'accounts:login' %}"style="color:inherit" >
+      <button class="btn btn-outline-success my-2 my-sm-0 header-text-lead font-italic" type="submit">SignIn</button>
+   </a>
+    </form>
+	{% endif %}
+  </div>
+</nav>
 
     <div id='container' class="container">
         <div id='header' class="row">
-            <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
             {% include "helpdesk/navigation.html" %}
         </div>
 
@@ -141,7 +193,7 @@ html,body {
         </div>
 
         <div id='footer' class="row">
-            <div class="col-md-12">{% include "footer.html" %}</div>
+            {% include "footer.html" %}
         </div>
     </div>
     {% include "helpdesk/debug.html" %}
@@ -150,9 +202,14 @@ html,body {
     <script src="{% static 'helpdesk/vendor/metisMenu/metisMenu.min.js' %}"></script>
 
     <!-- Custom Theme JavaScript -->
+	
     <script src="{% static 'helpdesk/dist/js/sb-admin-2.js' %}"></script>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static 'js/offcanvas.js' %}"></script>
 </body>
+{% endblock %}
+{% analytical_body_bottom %}
 </html>
-{% endwith %}
 {% endwith %}
