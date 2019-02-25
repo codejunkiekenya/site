@@ -1,39 +1,40 @@
 {% extends 'reviews\base.html' %}
 {% load social_share%}
-{% block title %}
-<div class="container text-center">
-<div class="panel panel-primary">
-<h2><a href="{% url 'hospitals:hospitals_detail' review.hospitals.id %}">{{ review.hospitals.name }}</a></h2>
-{% endblock %}
-
 {% block content %}
-<div class="container-fluid">
-        {% if review.image %}
+<div class="row">
+<div class="col-md-8">
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="border-bottom border-gray pb-2 mb-0 text-center text-black" style="padding-bottom: 20px;padding-top: 20px;"><a href="{% url 'hospitals:hospitals_detail' review.hospitals.id %}">{{ review.hospitals.name }}</a></h6>
+	<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+	<!-- Image section -->
+	    {% if review.image %}
         <img class="center-block img-responsive img-thumbnail" style="margin-bottom: 20px; width: 70%;
   height: auto;" src="{{ review.image.url }}">
         {% else %}
-        <p></p>
-        {% endif %}    
-       </div>
-<div class="container text-center">
-<div class="panel panel-info">
-<div class="panel-heading">
-<h4>Rated {{ review.rating }} of 5 by <a href="{% url 'reviews:user_review_list' review.user_name %}" >{{ review.user_name }}</a></h4>
+		<!-- empty space -->
+         &nbsp;&nbsp;
+        {% endif %}
+		<small class="d-block text-black">Published on {{ review.pub_date }}</small>
+		<small class="d-block text-black">Rated {{ review.rating }} of 5 by <a href="{% url 'reviews:user_review_list' review.user_name %}" >{{ review.user_name }}</a></small>
+	<!-- comment section -->
+		{{ review.comment }}
+		{% post_to_facebook object_or_url "Share on Facebook" %}
+        {% post_to_twitter "Wenyenchi.com: {{object.title}}. Check this out!" object_or_url "Twitter" %}
+        {% post_to_linkedin object.title object_or_url "LinkedIn" %}
+        {% send_email object.title "The Accountability Project: {{object.title}}. Check this out!" object_or_url "Email" %}
+		{% include 'reviews/comments.html' %}
+	</p>   
+  </div>
 </div>
-<p>{{ review.pub_date }}</p>
-<p class="text-center" style="font-family: Roboto;font-size: medium;">{{ review.comment }}</p>
+  <aside class="col-md-4 blog-sidebar" style="padding-top: 20px;padding-bottom:20px;">
+      <div class="p-4 mb-3 bg-white rounded">
+        <h4 class="font-italic">Social Mission</h4>
+        <p class="mb-0">To create a <strong>community of problem-solvers</strong> and to connect problem-solvers with people who have <strong>shared community problems and community interests.</strong> REGISTER NOW. BECOME A PROBLEM-SOLVER.
+     </div>
+	 <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Partner ADs</text></svg>
+        </div>
+  </aside>
 </div>
-</div>
-<div class="container text-center" style="margin-top: 20px; margin-bottom: 30px;">
-{% post_to_facebook object_or_url "Share on Facebook" %}
-{% post_to_twitter "Wenyenchi.com: {{object.title}}. Check this out!" object_or_url "Twitter" %}
-{% post_to_gplus object_or_url "Google+" %}
-{% post_to_linkedin object.title object_or_url "LinkedIn" %}
-{% send_email object.title "Wenyenchi.com: {{object.title}}. Check this out!" object_or_url "Email" %}
-</div>
-</div>
-</div>
-
-{% include 'reviews/comments.html' %}
-
-{% endblock %}
+<!-- end of row reviews -->
+ {% endblock %}
