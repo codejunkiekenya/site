@@ -32,9 +32,7 @@
         </p>
       {% endif %}
     {% endfor %}
-    <p class="submit">
-      <input type="submit" name="submit" class="submit-post" value="{% trans "Post" %}"/>
-      <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}"/>
-    </p>
-  </form>
+	<button class="btn btn-outline-success my-2 my-sm-0 font-italic submit-preview" name="preview" type="submit">Post</button>
+  {% endbuttons %}
+</form>
 {% endblock %}

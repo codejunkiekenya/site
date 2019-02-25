@@ -4,7 +4,7 @@
 {% block title %}{% trans "Approve a comment" %}{% endblock %}
 
 {% block content %}
-  <h1>{% trans "Really make this comment public?" %}</h1>
+  <h1>{% trans "Make this comment public?" %}</h1>
   <blockquote>{{ comment|linebreaks }}</blockquote>
   <form action="." method="post">{% csrf_token %}
     {% if next %}
