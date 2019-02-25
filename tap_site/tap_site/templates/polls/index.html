@@ -1,96 +1,27 @@
+{% extends 'header.html' %}
+{% load bootstrap3 staticfiles comments cms_tags menu_tags analytical sekizai_tags i18n postman_tags %}
 
-{% load staticfiles%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Wenyenchi{% endblock %}</title>
-    {% load staticfiles %}
-    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Roboto" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-    <!-- CSS Styling -->
-    <style>
+{% block content %}
+<div class="row">
+<div class="col-md-8">
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="border-bottom border-gray pb-2 mb-0" style="padding-bottom: 20px;padding-top: 20px;">Recent Polls</h6>
+    {% if latest_question_list %}
+	<div class="media text-muted pt-3">
+	    {% for question in latest_question_list %}
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <li>
+		<a href="{% url 'polls:detail' question.id %}"><h3 class="panel-title"><strong>{{ question.question_text }}</strong></h3></a>
+		</li>
+	  </p>
+	   {% endfor %}
+	   {% else %}
+	<div class="media-body pb-3 mb-0 small lh-125 border-gray">
+		<strong class="d-block text-gray-dark font-italic text-black" style="padding-bottom: 20px;">No polls available. Be the first.</strong>
+    </div> 
+	% endif %}
+{% endblock content %}
 
- .navbar-default {
-    background-color: #2ECC71;
-}
-.navbar-default .navbar-nav>li>a:focus, 
-.navbar-default .navbar-nav>li>a:hover,
-.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, 
-.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover  {
-  background: white;
-}
-
-html,body {
-  height: 100%;
-  background-color: lightgrey;
-  text-align: center;
-  font-family: 'Roboto', sans-serif;
-}
-
-</style>
-</head>
-<body>
-
-{% block body %}
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-
-        <!-- Header -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
-        </div>
-
-        <!-- Items -->
-        <div class="collapse navbar-collapse" id="topNavBar">
-            <ul class="nav navbar-nav navbar-right">
-                <li class=""><a href="{% url 'polls:index' %}"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp; Polls</a></li>
-  
-                <li>
-                    <a href="{% url 'accounts:logout' %}">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-    </div>
-</nav>
-
-<div class="container">
-        <div class="panel panel-primary">
-		<div class="panel-heading">
-		<h2>Latest Polls</h2>
-		</div>
-    {% block content %}
-	<div class="panel-body">
-        {% if latest_question_list %}
-    <ul>
-        {% for question in latest_question_list %}
-		<div class="panel panel-heading">
-        <li><a href="{% url 'polls:detail' question.id %}"><h3 class="panel-title"><strong>{{ question.question_text }}</strong></h3></a></li>
-         </div>
-		 {% endfor %}
-    </ul>
-         {% else %}
-    <p>No polls are available.</p>
-         {% endif %}
-    {% endblock content %}
-	</div>
-	</div>
-	</div>
-	{% include 'footer.html' %}
-{% endblock %}
-</body>
-</html>
 
 
