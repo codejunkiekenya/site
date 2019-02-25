@@ -1,95 +1,156 @@
-
-{% load i18n bootstrap3 staticfiles %}
+{% load bootstrap3 staticfiles comments cms_tags menu_tags analytical sekizai_tags i18n postman_tags %}
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<!-- Mobile Specific Metas
-        ================================================== -->
-    <meta name="format-detection" content="telephone=no">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Wenyenchi</title>
-    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Roboto" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script>
-    $(document).ready(function () {
-        $('.dropdown-toggle').dropdown();
-    });
-</script>
-{% bootstrap_css %}
-<style>
-.navbar-default {
-    background-color: #2ECC71;
-}
-.navbar-default .navbar-nav>li>a:focus,
-.navbar-default .navbar-nav>li>a:hover,
-.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus,
-.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
-    background: white;
-}
+    {% analytical_head_top %}
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Wenyenchi - The Public Accountability Project</title>
 
-.navbar-brand, body {
-    font-family: 'Helvetica', cursive;
-}
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/offcanvas/">
 
-html,body {
-  height: 100%;
-  background-color: lightgrey;
-  font-family: 'Roboto', sans-serif;
-  font-family: 'Montserrat', sans-serif;
-}
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}page-break-before: 
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
 
-            </style>
-{% bootstrap_javascript %}
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
+{% analytical_head_bottom %}
 </head>
-{% block bootstrap3_content %}
-<body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
 
-        <!-- Header -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
+{% analytical_body_top %}
+{% block body %}
+ <body class="bg-light">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-black">
+  <a class="navbar-brand mr-auto mr-lg-0 text-green font-italic header-text-lead" href="/">Wenyenchi</a>
+  <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link header-text-lead font-italic" href="/">Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/reviews">Reviewer</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/polls">Polls</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/survey">Surveys</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="#">Magazine</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link header-text-lead font-italic" href="/messages">Messaging</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle header-text-lead font-italic" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Support</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item header-text-lead font-italic" href="/helpdesk">HelpDesk</a>
+          <a class="dropdown-item header-text-lead font-italic" href="/contact">Contact Us</a>
+          <a class="dropdown-item header-text-lead font-italic" href="#">FAQS</a>
         </div>
-
-        <!-- Items -->
-        <div class="collapse navbar-collapse" id="topNavBar">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/reviews"><span class="glyphicon glyphicon-thumbs-down"></span>{% trans "Reviewer" %}</a></li>
-                        <li><a href="/survey"><span class="glyphicon glyphicon-eye-open"></span>{% trans "Surveys" %}</a></li>
-                        <li><a href="/polls"><span class="glyphicon glyphicon-comment"></span>{% trans "Polls" %}</a></li>
-                        {% if user.is_authenticated %}
-                        <li><a href="/messages"><span class="glyphicon glyphicon-envelope"></span>{% trans "Messages" %}</a></li>
-                        <li><a href="/helpdesk"><span class="glyphicon glyphicon-headphones"></span>{% trans "Helpdesk" %}</a></li>
-                        <li><a href="{% url 'accounts:logout' %}"><span class="glyphicon glyphicon-log-out"></span>{% trans "Logout" %}</a></li>
-                        {% else %}
-                        <li><a href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span>{% trans "Login" %}</a></li>
-						{% endif %}
-						
-                    </ul>
-                </div>
-
-    </div>
+      </li>
+    </ul>
+	<!-- registration/signin -->
+	{% if user.is_authenticated %}
+    <li class="nav-item">
+	<a class="nav-link header-text-lead font-italic" href="{% url 'reviews:user_review_list' user.username %}">Hi, {{ user.username }}</a>
+	</li>
+	<!-- empty space -->
+	&nbsp;
+	&nbsp;
+	<form class="form-inline my-2 my-lg-0">
+	  <a href="{% url 'accounts:logout' %}"style="color:inherit" >
+      <button class="btn btn-outline-success my-2 my-sm-0 header-text-lead font-italic" type="submit">SignOut</button>
+   </a>
+    </form>
+	{% else %}
+	<li class="nav-item">
+	<a class="nav-link header-text-lead font-italic" href="{% url 'reviews:review_list' %}">Hi, Guest</a>
+	</li>
+    <form class="form-inline my-2 my-lg-0">
+	  <a  href="{% url 'registration_register' %}"style="color:inherit" >
+      <button class="btn btn-outline-success my-2 my-sm-0 header-text-lead font-italic" type="submit">SignUp</button>
+   </a>
+    </form>
+	<!-- empty space -->
+	&nbsp;
+	&nbsp;
+	<form class="form-inline my-2 my-lg-0">
+	  <a href="{% url 'accounts:login' %}"style="color:inherit" >
+      <button class="btn btn-outline-success my-2 my-sm-0 header-text-lead font-italic" type="submit">SignIn</button>
+   </a>
+    </form>
+	{% endif %}
+  </div>
 </nav>
+
+<main role="main" class="container">
+  <div class="d-flex align-items-center p-3 my-3 text-black bg-purple rounded shadow-sm text-center">
+    <div class="lh-100">
+      <h4 class="mb-0 text-white lh-100 header-text font-italic">The Accountability Project</h4>
+      <hr>
+      <h4 class="font-italic header-text-lead">"Speak Up & Be Heard" - "Sema Usikike"</h4>
+    </div>
+  </div>
+  <div class="container bg-white rounded shadow-sm">
+  <nav class="nav nav-underline">
+    <a class="nav-link  header-text-lead font-italic"active" href="{% url 'reviews:review_list' %}">Public Offices</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'counties:review_list' %}">Counties</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'constituencies:review_list' %}">Constituencies</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'wards:review_list' %}">Wards</a>
+	<a class="nav-link header-text-lead font-italic" href="{% url 'hospitals:review_list' %}">Hospitals</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'schools:review_list' %}">Schools</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'colleges:review_list' %}">Colleges</a>
+    <a class="nav-link header-text-lead font-italic" href="{% url 'hotels:review_list' %}">Hotels</a>
+	<a class="nav-link header-text-lead font-italic" href="{% url 'parks:review_list' %}">Parks</a>
+	<a class="nav-link header-text-lead font-italic" href="{% url 'companies:review_list' %}">Companies</a>
+	<a class="nav-link header-text-lead font-italic" href="{% url 'associations:review_list' %}">Associations</a>
+	<a class="nav-link header-text-lead font-italic" href="{% url 'sports:review_list' %}">Sports</a>
+	 
+	 <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2 font-italic" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0 font-italic" name="q" value="{{ request.GET.q }}" type="submit">Search</button>
+    </form>
+	
+  </nav>
+</div>
     
     <h1>{% block title %}(no title){% endblock %}</h1>
 
     {% bootstrap_messages %}
 
     {% block content %}(no content){% endblock %}
-
+    {% include 'footer.html' %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="{% static 'js/offcanvas.js' %}"></script>
 </body>
-{% include 'footer.html' %}
 {% endblock %}
+{% analytical_body_bottom %}
+</html>
