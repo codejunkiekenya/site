@@ -1,70 +1,5 @@
-{% load cms_tags menu_tags sekizai_tags i18n postman_tags staticfiles%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Wenyenchi{% endblock %}</title>
-    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Roboto" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-    <!-- CSS Styling -->
-    <style>
+{% extends 'header.html' %}
 
- .navbar-default {
-    background-color: #2ECC71;
-}
-.navbar-default .navbar-nav>li>a:focus, 
-.navbar-default .navbar-nav>li>a:hover,
-.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, 
-.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover  {
-  background: white;
-}
-
-html,body {
-  height: 100%;
-  background-color: lightgrey;
-  text-align: center;
-  font-family: 'Roboto', sans-serif;
-  font-family: 'Montserrat', sans-serif;
-}
-
-</style>
-</head>
-<body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-
-        <!-- Header -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
-        </div>
-
-        <!-- Items -->
-        <div class="collapse navbar-collapse" id="topNavBar">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/reviews"><span class="glyphicon glyphicon-thumbs-down"></span>{% trans "Reviewer" %}</a></li>
-                        <li><a href="/survey"><span class="glyphicon glyphicon-eye-open"></span>{% trans "Surveys" %}</a></li>
-                        <li><a href="/polls"><span class="glyphicon glyphicon-comment"></span>{% trans "Polls" %}</a></li>
-                        {% if user.is_authenticated %}
-                        <li><a href="/messages"><span class="glyphicon glyphicon-envelope"></span>{% trans "Messages" %}</a></li>
-                        <li><a href="/helpdesk"><span class="glyphicon glyphicon-headphones"></span>{% trans "Helpdesk" %}</a></li>
-                        <li><a href="/accounts/logout"><span class="glyphicon glyphicon-log-out"></span>{% trans "Logout" %}</a></li>
-                        {% else %}
-                        <li><a href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span>{% trans "Login" %}</a></li>
-                        {% endif %}
-                    </ul>
-                </div>
-
-    </div>
-</nav>
 {% block body %}
 <div class="container">
 <div class="panel panel-default">
@@ -83,9 +18,3 @@ html,body {
 </form>
 </div>
 {% endblock %}
-<div class="container">
-{% include 'footer.html'%}	
-</div>
-
-</body>
-</html>
