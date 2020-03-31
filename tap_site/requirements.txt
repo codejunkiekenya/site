@@ -187,7 +187,7 @@
 # wards\tests.py: 1
 # wards\urls.py: 1
 # wards\views.py: 1,2,3,4,9,10
-Django == 1.11
+Django == 1.11.28
 
 # tap_site\urls.py: 4
 django_cms == 3.4.5
