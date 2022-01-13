@@ -190,7 +190,7 @@
 Django == 1.11
 
 # tap_site\urls.py: 4
-django_cms == 3.4.5
+django_cms == 3.4.7
 
 # associations\models.py: 7
 # colleges\models.py: 7
